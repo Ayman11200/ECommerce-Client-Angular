@@ -1,0 +1,72 @@
+<section class="pt-5">
+  <div class="form-container">
+    <h2 class="text-center">Register</h2>
+
+    <form [formGroup]="registerForm" (submit)="submit()">
+      <div class="form-group">
+        <!-- UserName -->
+        <label for="username">UserName</label>
+        <input type="text" id="username" formControlName="userName" class="form-control" />
+      </div>
+      <div class="text-danger">
+        @if (_username?.invalid && _username?.touched) {
+          @if (_username?.errors?.['required']) {
+            <span>UserName is required</span>
+          }
+          @if (_username?.errors?.['minlength']) {
+            <span>Username should be at least 6 charcters</span>
+          }
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="displayName">DisplayName</label>
+        <input formControlName="displayName" type="text" id="displayName" class="form-control" />
+      </div>
+      <div class="text-danger">
+        @if (_displayName?.invalid && _displayName?.touched) {
+          @if (_displayName?.errors?.['required']) {
+            <span>DisplayName is required</span>
+          }
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" id="email" class="form-control" />
+      </div>
+      <div class="text-danger">
+        @if (_email?.invalid && _email?.touched) {
+          @if (_email?.errors?.['required']) {
+            <span>Email is required</span>
+          }
+          @if (_email?.errors?.['email']) {
+            <span>Email format invalid Expample:test&#64;ts.ts</span>
+          }
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" id="password" class="form-control" />
+      </div>
+      <div class="text-danger">
+        @if (_password?.invalid && _password?.touched) {
+          @if (_password?.errors?.['required']) {
+            <span>Password is required</span>
+          }
+          @if (_password?.errors?.['pattern']) {
+            <span>
+              Password must contain at least one number, one special character (#$&#64;!.), and be
+              at least 8 characters long.</span
+            >
+          }
+        }
+      </div>
+
+      <div class="form-group mt-4">
+        <button type="submit" class="btn btn-info w-100" [disabled]="registerForm.invalid">Register</button>
+      </div>
+    </form>
+  </div>
+</section>

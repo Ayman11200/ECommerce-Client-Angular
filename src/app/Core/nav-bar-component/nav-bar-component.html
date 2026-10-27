@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-xl navbar-dark">
+  <div class="container">
+    <a routerLink="/home" class="navbar-brand" (click)="closeAll()">
+      <img src="./favicon.ico" class="logo" alt="logo" />
+      <i class="text-white">E-commerce</i>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <i class="material-icons">{{ isCollapsed ? 'menu' : 'close' }}</i>
+    </button>
+
+    <div class="collapse navbar-collapse" [class.show]="!isCollapsed">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" class="nav-link" (click)="closeAll()"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/shop" class="nav-link" routerLinkActive="active" (click)="closeAll()"
+            >Shopping</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about" class="nav-link" routerLinkActive="active" (click)="closeAll()"
+            >About us</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/best-seller"
+            class="nav-link"
+            routerLinkActive="active"
+            (click)="closeAll()"
+            >Best Seller</a
+          >
+        </li>
+      </ul>
+
+      <form action="" class="search-form">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="search..." name="search" />
+          <div class="input-group-append">
+            <button class="btn btn-light" type="submit">
+              <i class="material-icons">search</i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <ul class="navbar-nav align-items-xl-center">
+        <li class="nav-item">
+          <a routerLink="/basket" class="nav-link" (click)="closeAll()">
+            <i
+              [matBadge]="basketService.count()"
+              [matBadgeHidden]="basketService.count() == 0"
+              matBadgeColor="accent"
+              class="material-icons"
+              >shopping_cart</i
+            >
+          </a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            (click)="toggleDropDown()"
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            aria-haspopup="true"
+            [attr.aria-expanded]="visible"
+          >
+            <i class="material-icons">account_circle</i>
+          </a>
+          <div
+            [class.show]="visible"
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="navbarDropdown"
+          >
+            <a class="dropdown-item" routerLink="/register" (click)="closeAll()"
+              >Register <i class="fa fa-user-plus"></i
+            ></a>
+            <a class="dropdown-item" routerLink="/login" (click)="closeAll()"
+              >Login <i class="fa fa-sign-in"></i
+            ></a>
+            <a class="dropdown-item" routerLink="/orders" (click)="closeAll()"
+              >My Order <i class="fa fa-list"></i
+            ></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

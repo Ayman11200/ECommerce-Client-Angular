@@ -1,0 +1,40 @@
+<!-- Card -->
+<div class="card h-100">
+  @if (product.photos?.length > 0) {
+    <!-- Main Image -->
+    <img [src]="imagesBaseUrl + product.photos[selectedPhoto()].imageName" class="card-img-top" alt="" />
+
+    <!-- Thumbnails -->
+    <div class="thumbnails mb-3">
+      @for (photo of product.photos; track $index) {
+        <img (click)="selectedPhoto.set($index)" [src]="imagesBaseUrl + photo.imageName" alt="" class="small-img" />
+      }
+    </div>
+  }
+
+  <!-- Card Body -->
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+
+    <p class="card-text">
+      {{ product.description }}
+    </p>
+
+    <p class="price">
+      <span class="old-price">{{ product.oldPrice | currency }}</span>
+      {{ product.newPrice | currency }}
+    </p>
+
+    <button class="btn btn-outline-primary favorite-icon">
+      <i class="fa fa-bookmark"></i>
+    </button>
+
+    <div class="d-flex justify-content-between align-items-start">
+      <button (click)="onAddToCart()" class="btn btn-dark"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+
+      <button [routerLink]="['/product-details', product.id]" class="btn btn-success">
+        <i class="fa fa-info-circle"></i> Details
+      </button>
+    </div>
+  </div>
+</div>

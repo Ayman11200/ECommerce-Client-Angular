@@ -1,0 +1,212 @@
+<section class="login-section py-5">
+  <div class="form-container">
+    <div class="text-center mb-4">
+      <div class="login-icon mb-3">
+        <i class="bi bi-person-lock"></i>
+      </div>
+
+      <h2>Welcome Back</h2>
+      <p class="text-muted mb-0">Login to your account</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-envelope"></i>
+          </span>
+
+          <input
+            formControlName="email"
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Enter your email"
+            autocomplete="email"
+            [class.is-invalid]="_email?.invalid && _email?.touched"
+            [class.is-valid]="_email?.valid && _email?.touched"
+          />
+
+          @if (_email?.touched && _email?.valid) {
+            <span class="input-group-text validation-icon">
+              <i class="bi bi-check-circle-fill text-success"></i>
+            </span>
+          }
+
+          @if (_email?.invalid && _email?.touched) {
+            <span class="input-group-text validation-icon">
+              <i class="bi bi-x-circle-fill text-danger"></i>
+            </span>
+          }
+        </div>
+
+        <div class="text-danger validation-message">
+          @if (_email?.touched && _email?.errors?.['required']) {
+            <span>Email is required.</span>
+          }
+
+          @if (_email?.touched && _email?.errors?.['email']) {
+            <span>Please enter a valid email address.</span>
+          }
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-lock"></i>
+          </span>
+
+          <input
+            formControlName="password"
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            [class.is-invalid]="_password?.invalid && _password?.touched"
+            [class.is-valid]="_password?.valid && _password?.touched"
+          />
+
+          @if (_password?.touched && _password?.valid) {
+            <span class="input-group-text validation-icon">
+              <i class="bi bi-check-circle-fill text-success"></i>
+            </span>
+          }
+
+          @if (_password?.invalid && _password?.touched) {
+            <span class="input-group-text validation-icon">
+              <i class="bi bi-x-circle-fill text-danger"></i>
+            </span>
+          }
+        </div>
+
+        <div class="text-danger validation-message">
+          @if (_password?.touched && _password?.errors?.['required']) {
+            <span>Password is required.</span>
+          }
+        </div>
+        <div class="text-danger validation-message">
+          @if (_password?.touched && _password?.errors?.['pattern']) {
+            <span>Password must contain at least one number, one special character (#$&#64;!.), and be
+              at least 8 characters long.</span>
+          }
+        </div>
+      </div>
+
+      <!-- Forgot Password button opens the modal -->
+      <div class="text-end mb-3">
+        <button
+          type="button"
+          class="forgot-password-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#forgotPasswordModal"
+        >
+          Forgot password?
+        </button>
+      </div>
+
+      <!-- Existing Login button -->
+      <button
+        type="submit"
+        class="btn btn-info login-btn w-100"
+        [disabled]="loginForm.invalid"
+      >
+        <i class="bi bi-box-arrow-in-right me-2"></i>
+        Login
+      </button>
+
+      <!-- ADDED: Register navigation -->
+      <div class="text-center mt-4">
+        <span class="text-muted">Don't have an account?</span>
+        <a routerLink="/register" class="register-link ms-1">
+          Create account
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Forgot Password Modal -->
+<div
+  class="modal fade"
+  id="forgotPasswordModal"
+  tabindex="-1"
+  aria-labelledby="forgotPasswordModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content forgot-modal">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title fw-bold" id="forgotPasswordModalLabel">
+            <i class="bi bi-key me-2"></i>
+            Forgot Password?
+          </h5>
+          <p class="text-muted small mb-0 mt-2">
+            Enter your email to start resetting your password.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <label for="resetEmail" class="form-label">Email address</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-envelope"></i>
+          </span>
+
+          <input
+            type="email"
+            id="resetEmail"
+            class="form-control"
+            placeholder="example@email.com"
+            [(ngModel)]="emailModel"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-light"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-info text-white"
+          (click)="sendPasswordResetEmail()"
+          [disabled]="!emailModel.trim()"
+        >
+          <i class="bi bi-send me-1"></i>
+          Send email
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+```

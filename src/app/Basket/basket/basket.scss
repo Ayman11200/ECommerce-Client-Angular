@@ -1,0 +1,63 @@
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.basket-container {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.custom-table {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  width: 84%;
+  font-size: 1.1em;
+}
+ thead {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 20px;
+  vertical-align: middle;
+}
+
+.custom-table tbody tr {
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.product-image {
+  width: 500px;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.description {
+  font-size: 12px;
+}
+
+.btn {
+  margin: 0 5px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.order-summary-container {
+  flex: 1;
+  position: fixed;
+  // top: 150px;
+  right: 20px;
+  width: 300px;
+}
+

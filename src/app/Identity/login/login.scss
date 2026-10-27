@@ -1,0 +1,150 @@
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  padding: 40px 16px !important;
+  background-color: #f8f9fa;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 460px;
+  padding: 36px 32px;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background-color: rgba(13, 202, 240, 0.12);
+  color: #0aa2c0;
+  font-size: 30px;
+}
+
+.form-container h2 {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.input-group .input-group-text {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  padding: 12px 14px;
+}
+
+.input-group .form-control {
+  padding: 12px 14px;
+  min-width: 0;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+  border-color: #86b7fe;
+}
+
+.input-group .form-control.is-invalid,
+.input-group .form-control.is-valid {
+  background-image: none;
+}
+
+.validation-icon {
+  background-color: #fff !important;
+}
+
+.validation-message {
+  font-size: 13px;
+  margin-top: 6px;
+  min-height: 18px;
+}
+
+.login-btn {
+  padding: 13px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.login-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 28px 20px;
+  }
+}
+
+
+/* ADDED: Forgot password link */
+.forgot-password-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0aa2c0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.forgot-password-btn:hover {
+  color: #087990;
+  text-decoration: underline;
+}
+
+/* ADDED: Register link */
+.register-link {
+  color: #0aa2c0;
+  font-weight: 600;
+  text-decoration: none;
+    cursor: pointer;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* ADDED: Modal styling */
+.forgot-modal {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.forgot-modal .modal-header {
+  padding: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.forgot-modal .modal-body {
+  padding: 24px;
+}
+
+.forgot-modal .modal-footer {
+  padding: 16px 24px;
+  background-color: #f8f9fa;
+}
+
+.forgot-modal .input-group-text,
+.forgot-modal .form-control {
+  padding: 11px 13px;
+}
+
+.forgot-modal .btn-info {
+  border-radius: 7px;
+}
+

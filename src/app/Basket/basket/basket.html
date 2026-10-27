@@ -1,0 +1,75 @@
+@let currentBasket = basketService.basket();
+
+@if (currentBasket && currentBasket.basketItems?.length > 0) {
+  <div class="container pt-4 flex-container">
+    <div class="basket-container">
+      <table class="table table-hover custom-table">
+        <thead>
+          <tr class="bg-info text-white">
+            <th>Product</th>
+            <th></th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of currentBasket.basketItems; track item.productId) {
+            <tr>
+              <!--  -->
+              <td>
+                <a
+                  [routerLink]="['/product-details', item.productId]"
+                  class="text-dark text-decoration-none"
+                >
+                  {{ item.name }}
+                </a>
+              </td>
+              <td>
+                <a [routerLink]="['/product-details', item.productId]">
+                  <img [src]="imagesBaseUrl + item.image" class="product-image img-fluid" alt="" />
+                </a>
+              </td>
+              <td class="description">{{ item.description }}</td>
+              <td>{{ item.price | currency }}</td>
+              <td>
+                <div class="d-flex justify-content-center align-items-center">
+                  <button
+                    (click)="basketService.increaseItem(item.productId)"
+                    class="btn btn-sm text-info"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                  <span class="mx-2">{{ item.quantity }}</span>
+                  <button
+                    (click)="basketService.decreaseItem(item.productId)"
+                    class="btn btn-sm text-danger"
+                  >
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </td>
+              <td>{{ item.quantity * item.price | currency }}</td>
+              <td>
+                <button (click)="basketService.removeItem(item.productId)" class="btn btn-danger">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="order-summary-container">
+      <app-order-total></app-order-total>
+      <a routerLink="/checkout" class="btn btn-dark w-100 mt-3">Proceed to checkout</a>
+    </div>
+  </div>
+} @else {
+  <div class="text-center text-danger pt-4">
+    <h4>Your basket is empty</h4>
+  </div>
+}
