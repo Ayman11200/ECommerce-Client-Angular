@@ -96,7 +96,7 @@ export class BasketService {
     });
   }
 
-  // --------------------
+  // # Private Methods
 
   private saveBasket(basket: IBasket) {
     this.httpClient.put<IBasket>(`${environment.baseUrl}/Basket`, basket).subscribe({
@@ -132,4 +132,5 @@ export class BasketService {
       categoryName: product.categoryName,
     };
   }
+  // #End
 }

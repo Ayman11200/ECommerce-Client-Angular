@@ -10,7 +10,7 @@
 
   <mat-step>
     <ng-template matStepLabel>Order Confirmation</ng-template>
-    <p>You are now done.</p>
+    <app-payment [address]="address" [delivery]="deliveryForm"></app-payment>
     <div>
       <button matButton matStepperPrevious>Back</button>
       <button matButton (click)="stepper.reset()">Reset</button>

@@ -6,6 +6,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { Address } from '../address/address';
 import { Delivery } from '../delivery/delivery';
+import { Payment } from '../payment/payment';
 
 @Component({
   selector: 'app-stepper',
@@ -20,7 +21,8 @@ import { Delivery } from '../delivery/delivery';
     MatInputModule,
     Address,
     Delivery,
-  ],
+    Payment
+],
 })
 export class StepperOverviewExample {
   private fb = inject(FormBuilder);
@@ -35,6 +37,6 @@ export class StepperOverviewExample {
   });
 
   deliveryForm = this.fb.group({
-    secondCtrl: ['', Validators.required],
+    id: ['', Validators.required],
   });
 }

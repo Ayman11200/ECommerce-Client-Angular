@@ -5,11 +5,15 @@
 
   <mat-radio-group
     aria-label="Select a delivery method"
-    formControlName="secondCtrl"
+    formControlName="id"
     class="delivery-options"
   >
     @for (item of deliveryMethods(); track item.id) {
-      <mat-radio-button (change)="setShippingRadio($event.value)" class="delivery-option" [value]="item.id">
+      <mat-radio-button
+        (change)="setShippingRadio($event.value)"
+        class="delivery-option"
+        [value]="item.id"
+      >
         <span class="delivery-name">{{ item.name }}</span>
         <span class="delivery-description">{{ item.description }}</span>
         <span class="delivery-details">

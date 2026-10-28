@@ -30,8 +30,8 @@ export class Delivery implements OnInit {
     });
   }
 
-  setShippingRadio(selectdId: number) {
-    const delivery = this.deliveryMethods().find((m) => m.id == selectdId);
+  setShippingRadio(selectedId: number) {
+    const delivery = this.deliveryMethods().find((m) => m.id == selectedId);
     this.basketService.setShippingPrice(delivery?.price ?? 0);
   }
 }
