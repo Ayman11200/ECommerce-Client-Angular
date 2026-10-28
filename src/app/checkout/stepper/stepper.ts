@@ -4,6 +4,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { Address } from '../address/address';
+import { Delivery } from '../delivery/delivery';
 
 @Component({
   selector: 'app-stepper',
@@ -16,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    Address,
+    Delivery,
   ],
 })
 export class StepperOverviewExample {
@@ -29,8 +33,8 @@ export class StepperOverviewExample {
     zipCode: ['', Validators.required],
     state: ['', Validators.required],
   });
-  secondFormGroup = this.fb.group({
+
+  deliveryForm = this.fb.group({
     secondCtrl: ['', Validators.required],
   });
-
 }

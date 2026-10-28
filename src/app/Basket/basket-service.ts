@@ -21,7 +21,7 @@ export class BasketService {
 
   count = computed(() => this.basket()?.basketItems.reduce((sum, i) => sum + i.quantity, 0)) ?? 0;
 
-  private shippingSignal = signal(20);
+  private shippingSignal = signal(0);
   shipping = this.shippingSignal.asReadonly();
 
   setShippingPrice(price: number) {

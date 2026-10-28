@@ -1,0 +1,74 @@
+.address-section {
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.address-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.address-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.address-actions button {
+  border-radius: 8px;
+}
+
+.address-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 576px) {
+  .address-section {
+    padding: 1rem;
+  }
+
+  .address-header {
+    align-items: flex-start;
+  }
+
+  .address-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .address-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .address-actions button {
+    width: 100%;
+  }
+}

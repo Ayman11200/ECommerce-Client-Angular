@@ -1,0 +1,86 @@
+<div class="address-section">
+  <div class="address-header">
+    <h3 class="address-title">Shipping Address</h3>
+
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      (click)="canEdit() ? cancelEdit() : canEdit.set(true)"
+    >
+      <mat-icon>{{ canEdit() ? 'close' : 'edit' }}</mat-icon>
+      {{ canEdit() ? 'Cancel Editing' : 'Edit Address' }}
+    </button>
+  </div>
+
+  <form [formGroup]="address">
+    <div class="address-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" [readonly]="!canEdit()" />
+        @if (address.get('firstName')?.hasError('required')) {
+          <mat-error>First name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" [readonly]="!canEdit()" />
+        @if (address.get('lastName')?.hasError('required')) {
+          <mat-error>Last name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input matInput formControlName="street" [readonly]="!canEdit()" />
+        @if (address.get('street')?.hasError('required')) {
+          <mat-error>Street is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" [readonly]="!canEdit()" />
+        @if (address.get('city')?.hasError('required')) {
+          <mat-error>City is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>State</mat-label>
+        <input matInput formControlName="state" [readonly]="!canEdit()" />
+        @if (address.get('state')?.hasError('required')) {
+          <mat-error>State is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Zip Code</mat-label>
+        <input matInput formControlName="zipCode" [readonly]="!canEdit()" />
+        @if (address.get('zipCode')?.hasError('required')) {
+          <mat-error>Zip code is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="address-actions">
+      @if (canEdit()) {
+        <button type="button" mat-flat-button color="primary" (click)="updateAddress()">
+          <mat-icon>save</mat-icon>
+          Save Changes
+        </button>
+      }
+
+      <button
+        type="button"
+        mat-button
+        matStepperNext
+        [disabled]="address.invalid || canEdit() || !isSaved()"
+      >
+        Next
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

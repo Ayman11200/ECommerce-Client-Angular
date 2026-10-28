@@ -15,9 +15,8 @@ export class IdentityService {
     return this.httpClient.post(`${environment.baseUrl}/Account/Register`, form);
   }
   login(form: any) {
-    return this.httpClient.post(`${environment.baseUrl}/Account/Login`, form);
+    return this.httpClient.post(`${environment.baseUrl}/Account/Login`, form, {});
   }
-
   active(params: IActiveAccount) {
     return this.httpClient.post(`${environment.baseUrl}/Account/Active-Account`, params);
   }
@@ -29,6 +28,9 @@ export class IdentityService {
   }
 
   resetPassword(resetPasswordModel: IResetPassword) {
-    return this.httpClient.post(`${environment.baseUrl}/Account/Reset-password`, resetPasswordModel);
+    return this.httpClient.post(
+      `${environment.baseUrl}/Account/Reset-password`,
+      resetPasswordModel,
+    );
   }
 }

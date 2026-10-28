@@ -1,66 +1,15 @@
-
-<mat-stepper aria-label="Horizontal stepper" [linear]="true" #stepper>
+<mat-stepper aria-label="Checkout steps" [selectedIndex]="1" [linear]="false" #stepper>
   <mat-step [stepControl]="address">
-    <form [formGroup]="address">
-      <ng-template matStepLabel>Fill your address</ng-template>
-
-      <mat-form-field>
-        <mat-label>First name</mat-label>
-        <input matInput placeholder="First name" formControlName="firstName" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Last name</mat-label>
-        <input matInput placeholder="Last name" formControlName="lastName" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>State</mat-label>
-        <input matInput placeholder="State" formControlName="state" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>City</mat-label>
-        <input matInput placeholder="City" formControlName="city" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Street</mat-label>
-        <input matInput placeholder="Street" formControlName="street" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>ZipCode</mat-label>
-        <input matInput placeholder="ZipCode" formControlName="zipCode" required />
-      </mat-form-field>
-      <div>
-        <button matButton matStepperNext>Next</button>
-      </div>
-    </form>
+    <ng-template matStepLabel>Shipping Address</ng-template>
+    <app-address [address]="address"></app-address>
   </mat-step>
 
-
-  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-    <form [formGroup]="secondFormGroup">
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="secondCtrl"
-          placeholder="Ex. 1 Main St, New York, NY"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button matButton matStepperPrevious>Back</button>
-        <button matButton matStepperNext>Next</button>
-      </div>
-    </form>
+  <mat-step [stepControl]="deliveryForm" label="Delivery Method">
+    <app-delivery [delivery]="deliveryForm"></app-delivery>
   </mat-step>
-
 
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel>Order Confirmation</ng-template>
     <p>You are now done.</p>
     <div>
       <button matButton matStepperPrevious>Back</button>
