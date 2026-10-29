@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Shop } from './Shop/shop';
 import { Home } from './Home/home';
 
 export const routes: Routes = [
@@ -36,9 +35,21 @@ export const routes: Routes = [
     loadComponent: () => import('./checkout/checkout').then((m) => m.Checkout),
   },
   {
+    path: 'success',
+    loadComponent: () => import('./checkout/success/success').then((m) => m.SuccessComponent),
+  },
+  {
+    path: 'order',
+    loadComponent: () => import('./Orders/order/order').then((m) => m.Order),
+  },
+  {
+    path: 'orderItem/:id',
+    loadComponent: () => import('./Orders/order-item/order-item').then((m) => m.OrderItem),
+  },
+  {
     path: 'product-details/:id',
     loadComponent: () =>
       import('./Shop/product-details/product-details').then((m) => m.ProductDetails),
   },
-  { path: '**', redirectTo: 'shop', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'shop', pathMatch: 'full' },
 ];

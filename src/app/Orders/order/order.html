@@ -1,0 +1,95 @@
+<div class="container orders-page py-5">
+  <div class="orders-header mb-4">
+    <h2 class="orders-title">My Orders</h2>
+    <p class="orders-subtitle">Track your orders and view their details.</p>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table custom-table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Image</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- اكتب @for هنا -->
+          @for (order of orders(); track order.id) {
+            <tr>
+              <th scope="row">
+                <!-- رقم الأوردر -->
+              </th>
+
+              <td>
+                <div class="image-container">
+                  <img [src]="order.orderItems[0].mainImage" alt="" />
+                  <!-- عدد الصور الإضافية -->
+                </div>
+              </td>
+
+              <td>
+                {{ order.orderDate | date: 'MMM d, y' }}
+              </td>
+
+              <td>
+                <!-- حالة الطلب -->
+                <span class="status-badge">
+                  {{ order.status }}
+                </span>
+              </td>
+
+              <td class="order-total">
+                {{ order.total | currency }}
+              </td>
+
+              <td>
+                <!-- زر التفاصيل -->
+                <button type="button" class="btn details-btn" aria-label="View order details">
+                  <i class="fa fa-info-circle"></i>
+                </button>
+              </td>
+            </tr>
+          }
+          <!-- نهاية @for -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Images Modal -->
+<div
+  class="modal fade"
+  id="ImageModal"
+  tabindex="-1"
+  aria-labelledby="imageModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content image-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalTitle">Order Images</h5>
+
+        <!-- زر الإغلاق -->
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-images">
+          <!-- اكتب @for الخاص بالصور هنا -->
+          <!-- كل صورة داخل image-modal-item -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <!-- زر Close -->
+      </div>
+    </div>
+  </div>
+</div>

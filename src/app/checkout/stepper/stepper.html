@@ -8,12 +8,8 @@
     <app-delivery [delivery]="deliveryForm"></app-delivery>
   </mat-step>
 
-  <mat-step>
+  <mat-step label="Payment-checkout">
     <ng-template matStepLabel>Order Confirmation</ng-template>
     <app-payment [address]="address" [delivery]="deliveryForm"></app-payment>
-    <div>
-      <button matButton matStepperPrevious>Back</button>
-      <button matButton (click)="stepper.reset()">Reset</button>
-    </div>
   </mat-step>
 </mat-stepper>
