@@ -4,6 +4,7 @@ import { OrderSrevice } from '../order-srevice';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import 'bootstrap';
 
 @Component({
   imports: [DatePipe, CurrencyPipe, RouterLink],

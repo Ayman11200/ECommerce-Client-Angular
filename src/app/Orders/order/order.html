@@ -22,16 +22,31 @@
         <tbody>
           @for (order of orders(); track order.id) {
             <tr>
-              <th scope="row">
-                <!-- رقم الأوردر -->
-              </th>
+              <th scope="row">#{{ order.id }}</th>
 
               <td>
                 <div class="image-container">
-                  <a (click)="selectedOrder = order" data-bs-toggle="modal" data-bs-target="#ImageModal">
-                    <img [src]="imageBaseUrl + order.orderItems[0].mainImage" alt="" />
-                    <!-- عدد الصور الإضافية -->
-                  </a>
+                  @if (order.orderItems.length > 0) {
+                    <button
+                      type="button"
+                      class="image-button"
+                      (click)="selectedOrder = order"
+                      data-bs-toggle="modal"
+                      data-bs-target="#ImageModal"
+                      [attr.aria-label]="'View images for order ' + order.id"
+                    >
+                      <img
+                        class="order-image"
+                        [src]="imageBaseUrl + order.orderItems[0]?.mainImage"
+                        [alt]="order.orderItems[0].productName"
+                      />
+                      @if (order.orderItems.length > 1) {
+                        <span class="more-images">+{{ order.orderItems.length - 1 }}</span>
+                      }
+                    </button>
+                  } @else {
+                    <span class="text-muted">No items</span>
+                  }
                 </div>
               </td>
 
@@ -40,7 +55,6 @@
               </td>
 
               <td>
-                <!-- حالة الطلب -->
                 <span class="status-badge">
                   {{ order.status }}
                 </span>
@@ -51,7 +65,6 @@
               </td>
 
               <td>
-                <!-- زر التفاصيل -->
                 <button
                   [routerLink]="['/orderItem', order.id]"
                   type="button"
@@ -81,23 +94,26 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content image-modal">
       <div class="modal-header">
-        <h5 class="modal-title" id="imageModalTitle">Order Images</h5>
-
-        <!-- زر الإغلاق -->
+        <h5 class="modal-title" id="imageModalTitle">Order #{{ selectedOrder?.id }} Images</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
         <div class="modal-images">
-          @if(selectedOrder) {
+          @if (selectedOrder) {
             @for (item of selectedOrder.orderItems; track $index) {
-              <img [src]="imageBaseUrl + item.mainImage" alt="">
+              <img
+                class="image-modal-item"
+                [src]="imageBaseUrl + item.mainImage"
+                [alt]="item.productName"
+              />
             }
           }
         </div>
       </div>
 
       <div class="modal-footer">
-        <!-- زر Close -->
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

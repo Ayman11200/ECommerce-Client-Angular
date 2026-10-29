@@ -1,4 +1,4 @@
-<mat-stepper aria-label="Checkout steps" [selectedIndex]="1" [linear]="false" #stepper>
+<mat-stepper aria-label="Checkout steps" [linear]="false" #stepper>
   <mat-step [stepControl]="address">
     <ng-template matStepLabel>Shipping Address</ng-template>
     <app-address [address]="address"></app-address>

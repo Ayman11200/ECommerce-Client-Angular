@@ -85,6 +85,14 @@ $page-background: #f8f9fc;
   align-items: center;
   justify-content: center;
 
+  .image-button {
+    position: relative;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
   .order-image {
     display: block;
     width: 52px;
@@ -184,6 +192,10 @@ $page-background: #f8f9fc;
     object-fit: contain;
     background-color: $page-background;
     border-radius: 8px;
+  }
+
+  .modal-title {
+    font-weight: 700;
   }
 }
 
