@@ -1,1 +1,199 @@
-<p>order-item works!</p>
+<!-- Main Order Page Container -->
+<div class="container py-4 order-page">
+  <!-- Page Title and Description -->
+  <div class="page-heading mb-4">
+    <h2>Order Details</h2>
+    <p class="text-muted mb-0">Review your order and rate your products.</p>
+  </div>
+
+  <!-- Main Layout: Products + Order Summary -->
+  <div class="row g-4">
+    <!-- Left Section: Ordered Products Table -->
+    <div class="col-12 col-lg-8">
+      <div class="products-card">
+        <!-- Products Section Header -->
+        <div class="section-heading">
+          <h5 class="mb-0">Ordered Products</h5>
+        </div>
+
+        <!-- Responsive Table Wrapper -->
+        <div class="table-responsive">
+          <table class="table custom-table align-middle mb-0">
+            <!-- Table Column Headers -->
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Details</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+
+            <!-- Product Rows -->
+            <tbody>
+              <!-- Product Row: Repeat this row for each product -->
+
+              @if (order()) {
+                @for (item of order()?.orderItems; track $index) {
+                  <tr>
+                    <!-- Product Image and Name -->
+                    <td>
+                      <a href="#" class="product-link">
+                        <img
+                          [src]="imageBaseUrl + item.mainImage"
+                          alt="Product Image"
+                          class="product-image"
+                        />
+                        <span>{{ item.productName }}</span>
+                      </a>
+                    </td>
+
+                    <!-- Product Description -->
+                    <td class="text-muted small">{{ item.description }}</td>
+
+                    <!-- Unit Price -->
+                    <td>{{ item.price | currency }}</td>
+
+                    <!-- Product Quantity -->
+                    <td>{{ item.quantity }}</td>
+
+                    <!-- Total Price: Unit Price × Quantity -->
+                    <td class="fw-semibold">{{ item.price * item.quantity | currency }}</td>
+
+                    <!-- Rate Product Button -->
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-rate"
+                        (click)="selectedProductId = item.productItemId"
+                      >
+                        <i class="bi bi-star me-1"></i>
+                        Rate
+                      </button>
+                    </td>
+                  </tr>
+                }
+              } @else {
+                <tr>
+                  <td colspan="6" class="text-center py-5 text-muted">
+                    No products found in this order.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section: Order Summary -->
+    <div class="col-12 col-lg-4">
+      <div class="summary-card">
+        <!-- Summary Header -->
+        <div class="summary-heading">
+          <i class="bi bi-receipt me-2"></i>
+          Order Summary
+        </div>
+
+        <!-- Summary Details -->
+        <div class="summary-body">
+          <!-- Shipping Information -->
+          <p class="shipping-note">
+            <i class="bi bi-truck me-1"></i>
+            Shipping is included in the order total.
+          </p>
+
+          <!-- Subtotal -->
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>{{ order().subTotal | currency }}</strong>
+          </div>
+
+          <!-- Shipping  -->
+          <div class="summary-row">
+            <span>Shipping</span>
+            <strong>{{ order().total - order().subTotal | currency }}</strong>
+          </div>
+
+          <!-- Status -->
+          <div class="summary-row">
+            <span>Order Status</span>
+            <span class="status-badge status-pending"> {{ order().status }} </span>
+          </div>
+
+          <!-- Total -->
+          <div class="summary-total">
+            <span>Order Total</span>
+            <strong>{{ order().total | currency }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Rating Modal -->
+<div
+  class="modal fade"
+  id="ratingModal"
+  tabindex="-1"
+  aria-labelledby="ratingModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rating-modal">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="ratingModalTitle">Rate Your Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <!-- Rating Instructions -->
+        <p class="text-muted text-center mb-2">How would you rate this product?</p>
+
+        <!-- Star Rating Options -->
+        <div class="rating-stars">
+          <!-- Repeat for 5, 4, 3, 2, 1 stars -->
+          <input type="radio" class="star-input" id="rating-5" name="product-rating" [value]="5"  [(ngModel)]="selectedStars"/>
+          <label class="star-label" for="rating-5" aria-label="5 stars">★</label>
+
+          <input type="radio" class="star-input" id="rating-4" name="product-rating" [value]="4" [(ngModel)]="selectedStars"/>
+          <label class="star-label" for="rating-4" aria-label="4 stars">★</label>
+
+          <input type="radio" class="star-input" id="rating-3" name="product-rating" [value]="3" [(ngModel)]="selectedStars"/>
+          <label class="star-label" for="rating-3" aria-label="3 stars">★</label>
+
+          <input type="radio" class="star-input" id="rating-2" name="product-rating" [value]="2" [(ngModel)]="selectedStars"/>
+          <label class="star-label" for="rating-2" aria-label="2 stars">★</label>
+
+          <input type="radio" class="star-input" id="rating-1" name="product-rating" [value]="1" [(ngModel)]="selectedStars"/>
+          <label class="star-label" for="rating-1" aria-label="1 star">★</label>
+        </div>
+
+        <!-- Review Textarea -->
+        <label for="reviewContent" class="form-label mt-3"> Your Review </label>
+
+        <textarea
+          id="reviewContent"
+          placeholder="Write your review..."
+          class="form-control review-input"
+          rows="4"
+          [(ngModel)]="reviewContent"
+        ></textarea>
+      </div>
+
+      <!-- Modal Footer: Cancel and Submit -->
+      <div class="modal-footer">
+        <!-- Close Modal Button -->
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+
+        <!-- Save Review Button -->
+        <button type="button" class="btn btn-save" (click)="addRating()">Save Review</button>
+      </div>
+    </div>
+  </div>
+</div>

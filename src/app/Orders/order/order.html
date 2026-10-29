@@ -20,7 +20,6 @@
         </thead>
 
         <tbody>
-          <!-- اكتب @for هنا -->
           @for (order of orders(); track order.id) {
             <tr>
               <th scope="row">
@@ -29,8 +28,10 @@
 
               <td>
                 <div class="image-container">
-                  <img [src]="order.orderItems[0].mainImage" alt="" />
-                  <!-- عدد الصور الإضافية -->
+                  <a (click)="selectedOrder = order" data-bs-toggle="modal" data-bs-target="#ImageModal">
+                    <img [src]="imageBaseUrl + order.orderItems[0].mainImage" alt="" />
+                    <!-- عدد الصور الإضافية -->
+                  </a>
                 </div>
               </td>
 
@@ -51,7 +52,12 @@
 
               <td>
                 <!-- زر التفاصيل -->
-                <button type="button" class="btn details-btn" aria-label="View order details">
+                <button
+                  [routerLink]="['/orderItem', order.id]"
+                  type="button"
+                  class="btn details-btn"
+                  aria-label="View order details"
+                >
                   <i class="fa fa-info-circle"></i>
                 </button>
               </td>
@@ -82,8 +88,11 @@
 
       <div class="modal-body">
         <div class="modal-images">
-          <!-- اكتب @for الخاص بالصور هنا -->
-          <!-- كل صورة داخل image-modal-item -->
+          @if(selectedOrder) {
+            @for (item of selectedOrder.orderItems; track $index) {
+              <img [src]="imageBaseUrl + item.mainImage" alt="">
+            }
+          }
         </div>
       </div>
 
