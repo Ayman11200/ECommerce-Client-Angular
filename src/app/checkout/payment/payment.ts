@@ -108,10 +108,14 @@ export class Payment implements OnDestroy {
       return;
     }
 
+    // نحفظ بيانات الفورم عشان نستخدمها لو حصل redirect
+    (window as any).checkoutDeliveryForm = this.delivery;
+    (window as any).checkoutAddressForm = this.address;
+
     const { error, paymentIntent } = await this.stripe.confirmPayment({
       elements: this.elements, //الفورم اللي المستخدم دخل فيه بيانات الكارت
 
-      confirmParams: { return_url: `${window.location.origin}/success` },  //إعدادات تأكيد الدفع، ومنها رابط الرجوع بعد الـ Redirect.
+      confirmParams: { return_url: `${window.location.origin}/checkout/complete` }, //الرجوع لصفحة وسيطة عشان نغطي حالات 3D Secure
 
       redirect: 'if_required', // الكروت العادية ما بتعملش redirect
     });
@@ -153,9 +157,16 @@ export class Payment implements OnDestroy {
   createOrder(): void {
     const order = this.getOrder();
 
+    // نحفظ بيانات الفورم عشان نستخدمها لو حصل redirect
+    (window as any).checkoutDeliveryForm = this.delivery;
+    (window as any).checkoutAddressForm = this.address;
+
     this.checkoutService.createOrder(order).subscribe({
       next: (value) => {
         this.basketService.deleteBasket(order.basketId);
+        // نمسح البيانات المحفوظة بعد نجاح إنشاء الأوردر
+        delete (window as any).checkoutDeliveryForm;
+        delete (window as any).checkoutAddressForm;
         this.router.navigate(['/success'], { queryParams: { orderId: value.id } });
         this.toastr.success('Order created successfully', 'SUCCESS');
       },
