@@ -1,0 +1,57 @@
+// Third-party overrides. All colors come from Fit Plus tokens.
+
+// Toastr: solid status colors with white text.
+.toast-container .ngx-toastr {
+  border-radius: var(--fp-radius);
+  box-shadow: var(--fp-shadow);
+  color: var(--fp-on-primary);
+  font-family: var(--fp-font-body);
+  font-size: 0.9375rem;
+  opacity: 1;
+}
+
+.toast-container .ngx-toastr:hover {
+  box-shadow: var(--fp-shadow);
+  opacity: 1;
+}
+
+.toast-container .ngx-toastr .toast-title {
+  font-family: var(--fp-font-heading);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.toast-container .ngx-toastr .toast-message {
+  color: var(--fp-on-primary);
+}
+
+.toast-container .ngx-toastr.toast-success {
+  background-color: var(--fp-success);
+}
+
+.toast-container .ngx-toastr.toast-error {
+  background-color: var(--fp-danger);
+}
+
+.toast-container .ngx-toastr.toast-warning {
+  background-color: var(--fp-warning);
+}
+
+.toast-container .ngx-toastr.toast-info {
+  background-color: var(--fp-info);
+}
+
+.toast-container .ngx-toastr .toast-progress {
+  background-color: var(--fp-on-primary);
+  opacity: 0.35;
+}
+
+.toast-container .ngx-toastr .toast-close-button {
+  color: var(--fp-on-primary);
+  opacity: 0.85;
+}
+
+.toast-container .ngx-toastr .toast-close-button:hover {
+  color: var(--fp-on-primary);
+  opacity: 1;
+}

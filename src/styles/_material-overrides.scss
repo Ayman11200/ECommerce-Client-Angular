@@ -1,0 +1,56 @@
+// Angular Material system variables mapped to Fit Plus tokens.
+// No literal colors here: only var(--fp-*) references.
+
+:root {
+  --mat-sys-primary: var(--fp-primary);
+  --mat-sys-on-primary: var(--fp-on-primary);
+  --mat-sys-primary-container: var(--fp-primary-soft);
+  --mat-sys-on-primary-container: var(--fp-primary-text);
+  --mat-sys-primary-fixed: var(--fp-primary-soft);
+  --mat-sys-primary-fixed-dim: var(--fp-primary);
+  --mat-sys-on-primary-fixed: var(--fp-primary-text);
+  --mat-sys-on-primary-fixed-variant: var(--fp-primary-text);
+  --mat-sys-inverse-primary: var(--fp-primary-soft);
+  --mat-sys-surface-tint: var(--fp-primary);
+
+  --mat-sys-secondary: var(--fp-surface-2);
+  --mat-sys-on-secondary: var(--fp-text);
+  --mat-sys-secondary-container: var(--fp-surface-2);
+  --mat-sys-on-secondary-container: var(--fp-text);
+  --mat-sys-tertiary: var(--fp-primary-text);
+  --mat-sys-on-tertiary: var(--fp-on-primary);
+  --mat-sys-tertiary-container: var(--fp-primary-soft);
+  --mat-sys-on-tertiary-container: var(--fp-primary-text);
+
+  --mat-sys-surface: var(--fp-surface);
+  --mat-sys-surface-bright: var(--fp-surface);
+  --mat-sys-surface-dim: var(--fp-surface-2);
+  --mat-sys-surface-variant: var(--fp-surface-2);
+  --mat-sys-surface-container-lowest: var(--fp-surface);
+  --mat-sys-surface-container-low: var(--fp-surface);
+  --mat-sys-surface-container: var(--fp-surface);
+  --mat-sys-surface-container-high: var(--fp-surface-2);
+  --mat-sys-surface-container-highest: var(--fp-surface-2);
+  --mat-sys-on-surface: var(--fp-text);
+  --mat-sys-on-surface-variant: var(--fp-text-muted);
+  --mat-sys-inverse-surface: var(--fp-dark-bg);
+  --mat-sys-inverse-on-surface: var(--fp-on-dark);
+  --mat-sys-background: var(--fp-bg);
+  --mat-sys-on-background: var(--fp-text);
+
+  --mat-sys-outline: var(--fp-border);
+  --mat-sys-outline-variant: var(--fp-border);
+  --mat-sys-scrim: var(--fp-overlay);
+  --mat-sys-shadow: var(--fp-dark-bg);
+
+  --mat-sys-error: var(--fp-danger);
+  --mat-sys-on-error: var(--fp-on-primary);
+  --mat-sys-error-container: var(--fp-danger-soft);
+  --mat-sys-on-error-container: var(--fp-danger);
+
+  --mat-sys-corner-extra-small: var(--fp-radius-sm);
+  --mat-sys-corner-small: var(--fp-radius-sm);
+  --mat-sys-corner-medium: var(--fp-radius);
+  --mat-sys-corner-large: var(--fp-radius-lg);
+  --mat-sys-corner-extra-large: var(--fp-radius-lg);
+}

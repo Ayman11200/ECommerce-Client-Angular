@@ -1,0 +1,49 @@
+// Fit Plus design tokens.
+// This is the only place where literal color values are allowed.
+:root {
+  color-scheme: light;
+
+  --fp-bg: #f5f6f8;
+  --fp-surface: #ffffff;
+  --fp-surface-2: #eef0f3;
+  --fp-border: #dfe3e8;
+  --fp-image-stage: #ffffff;
+
+  --fp-dark-bg: #14161a;
+  --fp-dark-surface: #1c1f25;
+  --fp-dark-border: #2e333d;
+  --fp-on-dark: #f1f2f4;
+  --fp-on-dark-muted: #9aa1ad;
+
+  --fp-text: #1c1f25;
+  --fp-text-muted: #5f6773;
+  --fp-on-primary: #ffffff;
+
+  --fp-primary: #e8590c;
+  --fp-primary-hover: #d9480f;
+  --fp-primary-active: #bf3f0a;
+  --fp-primary-text: #c2410c;
+  --fp-primary-soft: rgba(232, 89, 12, 0.12);
+  --fp-primary-rgb: 232, 89, 12;
+
+  --fp-success: #15803d;
+  --fp-success-soft: rgba(21, 128, 61, 0.12);
+  --fp-danger: #dc2626;
+  --fp-danger-soft: rgba(220, 38, 38, 0.1);
+  --fp-warning: #b45309;
+  --fp-warning-soft: rgba(180, 83, 9, 0.12);
+  --fp-info: #0369a1;
+  --fp-info-soft: rgba(3, 105, 161, 0.1);
+  --fp-star: #f2b01e;
+  --fp-overlay: rgba(20, 22, 26, 0.72);
+
+  --fp-radius-sm: 0.375rem;
+  --fp-radius: 0.5rem;
+  --fp-radius-lg: 0.75rem;
+  --fp-shadow: 0 6px 20px rgba(20, 22, 26, 0.1);
+  --fp-focus-ring: 0 0 0 0.2rem rgba(232, 89, 12, 0.35);
+  --fp-transition: 0.25s ease;
+
+  --fp-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fp-font-heading: 'Barlow Condensed', 'Inter', sans-serif;
+}

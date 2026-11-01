@@ -1,0 +1,249 @@
+// Bootstrap CSS variables mapped to Fit Plus tokens.
+// No literal colors here: only var(--fp-*) references.
+
+:root {
+  --bs-body-bg: var(--fp-bg);
+  --bs-body-color: var(--fp-text);
+  --bs-body-font-family: var(--fp-font-body);
+  --bs-body-font-size: 1rem;
+  --bs-body-line-height: 1.5;
+
+  --bs-emphasis-color: var(--fp-text);
+  --bs-secondary-color: var(--fp-text-muted);
+  --bs-secondary-bg: var(--fp-surface-2);
+  --bs-tertiary-bg: var(--fp-surface-2);
+
+  --bs-border-color: var(--fp-border);
+  --bs-border-color-translucent: var(--fp-border);
+  --bs-border-radius-sm: var(--fp-radius-sm);
+  --bs-border-radius: var(--fp-radius);
+  --bs-border-radius-lg: var(--fp-radius-lg);
+  --bs-border-radius-xl: var(--fp-radius-lg);
+  --bs-border-radius-pill: var(--fp-radius);
+
+  --bs-primary: var(--fp-primary);
+  --bs-primary-rgb: var(--fp-primary-rgb);
+  --bs-primary-text-emphasis: var(--fp-primary-text);
+  --bs-primary-bg-subtle: var(--fp-primary-soft);
+  --bs-primary-border-subtle: var(--fp-primary-soft);
+  --bs-link-color: var(--fp-primary-text);
+  --bs-link-hover-color: var(--fp-primary-hover);
+  --bs-link-color-rgb: var(--fp-primary-rgb);
+  --bs-focus-ring-color: var(--fp-primary-soft);
+  --bs-focus-ring-width: 0.2rem;
+
+  --bs-success: var(--fp-success);
+  --bs-success-bg-subtle: var(--fp-success-soft);
+  --bs-success-border-subtle: var(--fp-success-soft);
+  --bs-danger: var(--fp-danger);
+  --bs-danger-bg-subtle: var(--fp-danger-soft);
+  --bs-danger-border-subtle: var(--fp-danger-soft);
+  --bs-warning: var(--fp-warning);
+  --bs-warning-bg-subtle: var(--fp-warning-soft);
+  --bs-warning-border-subtle: var(--fp-warning-soft);
+  --bs-info: var(--fp-info);
+  --bs-info-bg-subtle: var(--fp-info-soft);
+  --bs-info-border-subtle: var(--fp-info-soft);
+
+  --bs-form-control-bg: var(--fp-surface);
+  --bs-form-control-color: var(--fp-text);
+  --bs-form-control-border-color: var(--fp-border);
+  --bs-form-control-focus-border-color: var(--fp-primary);
+  --bs-form-control-focus-box-shadow: var(--fp-focus-ring);
+  --bs-form-control-placeholder-color: var(--fp-text-muted);
+  --bs-form-select-bg: var(--fp-surface);
+  --bs-form-check-input-border: var(--fp-border);
+  --bs-table-color: var(--fp-text);
+  --bs-table-bg: var(--fp-surface);
+  --bs-table-border-color: var(--fp-border);
+  --bs-table-striped-bg: var(--fp-surface-2);
+  --bs-table-hover-bg: var(--fp-surface-2);
+}
+
+// Buttons: Bootstrap keeps --bs-btn-* on each variant, so they must be set explicitly.
+.btn {
+  --bs-btn-font-family: var(--fp-font-body);
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: var(--fp-radius);
+  --bs-btn-focus-box-shadow: var(--fp-focus-ring);
+  --bs-btn-transition: color var(--fp-transition), background-color var(--fp-transition),
+    border-color var(--fp-transition), box-shadow var(--fp-transition);
+}
+
+.btn-primary {
+  --bs-btn-color: var(--fp-on-primary);
+  --bs-btn-bg: var(--fp-primary);
+  --bs-btn-border-color: var(--fp-primary);
+  --bs-btn-hover-color: var(--fp-on-primary);
+  --bs-btn-hover-bg: var(--fp-primary-hover);
+  --bs-btn-hover-border-color: var(--fp-primary-hover);
+  --bs-btn-active-color: var(--fp-on-primary);
+  --bs-btn-active-bg: var(--fp-primary-active);
+  --bs-btn-active-border-color: var(--fp-primary-active);
+  --bs-btn-disabled-color: var(--fp-on-primary);
+  --bs-btn-disabled-bg: var(--fp-primary);
+  --bs-btn-disabled-border-color: var(--fp-primary);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--fp-primary-text);
+  --bs-btn-border-color: var(--fp-primary);
+  --bs-btn-hover-color: var(--fp-on-primary);
+  --bs-btn-hover-bg: var(--fp-primary);
+  --bs-btn-hover-border-color: var(--fp-primary);
+  --bs-btn-active-color: var(--fp-on-primary);
+  --bs-btn-active-bg: var(--fp-primary-active);
+  --bs-btn-active-border-color: var(--fp-primary-active);
+  --bs-btn-disabled-color: var(--fp-primary-text);
+  --bs-btn-disabled-border-color: var(--fp-border);
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: var(--fp-text);
+  --bs-btn-border-color: var(--fp-border);
+  --bs-btn-hover-color: var(--fp-text);
+  --bs-btn-hover-bg: var(--fp-surface-2);
+  --bs-btn-hover-border-color: var(--fp-primary);
+  --bs-btn-active-color: var(--fp-text);
+  --bs-btn-active-bg: var(--fp-surface-2);
+  --bs-btn-active-border-color: var(--fp-primary);
+}
+
+.btn-danger {
+  --bs-btn-color: var(--fp-on-primary);
+  --bs-btn-bg: var(--fp-danger);
+  --bs-btn-border-color: var(--fp-danger);
+  --bs-btn-hover-color: var(--fp-on-primary);
+  --bs-btn-hover-bg: var(--fp-danger);
+  --bs-btn-hover-border-color: var(--fp-danger);
+  --bs-btn-active-color: var(--fp-on-primary);
+  --bs-btn-active-bg: var(--fp-danger);
+  --bs-btn-active-border-color: var(--fp-danger);
+}
+
+// Forms
+.form-control,
+.form-select {
+  background-color: var(--fp-surface);
+  color: var(--fp-text);
+  border-color: var(--fp-border);
+  border-radius: var(--fp-radius);
+}
+
+.form-control::placeholder {
+  color: var(--fp-text-muted);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--fp-primary);
+  box-shadow: var(--fp-focus-ring);
+}
+
+.form-check-input {
+  border-color: var(--fp-border);
+}
+
+.form-check-input:checked {
+  background-color: var(--fp-primary);
+  border-color: var(--fp-primary);
+}
+
+.form-check-input:focus {
+  border-color: var(--fp-primary);
+  box-shadow: var(--fp-focus-ring);
+}
+
+.form-label {
+  color: var(--fp-text);
+  font-weight: 500;
+}
+
+// Surfaces
+.card {
+  --bs-card-bg: var(--fp-surface);
+  --bs-card-border-color: var(--fp-border);
+  --bs-card-border-radius: var(--fp-radius-lg);
+  --bs-card-cap-bg: var(--fp-surface);
+  --bs-card-color: var(--fp-text);
+}
+
+.modal {
+  --bs-modal-bg: var(--fp-surface);
+  --bs-modal-border-color: var(--fp-border);
+  --bs-modal-border-radius: var(--fp-radius-lg);
+  --bs-modal-header-border-color: var(--fp-border);
+  --bs-modal-footer-border-color: var(--fp-border);
+  --bs-modal-color: var(--fp-text);
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: var(--fp-surface);
+  --bs-dropdown-border-color: var(--fp-border);
+  --bs-dropdown-border-radius: var(--fp-radius);
+  --bs-dropdown-link-color: var(--fp-text);
+  --bs-dropdown-link-hover-color: var(--fp-text);
+  --bs-dropdown-link-hover-bg: var(--fp-surface-2);
+  --bs-dropdown-link-active-color: var(--fp-on-primary);
+  --bs-dropdown-link-active-bg: var(--fp-primary);
+}
+
+.list-group {
+  --bs-list-group-color: var(--fp-text);
+  --bs-list-group-bg: var(--fp-surface);
+  --bs-list-group-border-color: var(--fp-border);
+  --bs-list-group-action-hover-bg: var(--fp-surface-2);
+  --bs-list-group-active-bg: var(--fp-primary);
+  --bs-list-group-active-border-color: var(--fp-primary);
+}
+
+// Pagination
+.pagination {
+  --bs-pagination-color: var(--fp-text);
+  --bs-pagination-bg: var(--fp-surface);
+  --bs-pagination-border-color: var(--fp-border);
+  --bs-pagination-border-radius: var(--fp-radius);
+  --bs-pagination-hover-color: var(--fp-primary-text);
+  --bs-pagination-hover-bg: var(--fp-surface-2);
+  --bs-pagination-hover-border-color: var(--fp-primary);
+  --bs-pagination-focus-color: var(--fp-primary-text);
+  --bs-pagination-focus-bg: var(--fp-surface-2);
+  --bs-pagination-focus-box-shadow: var(--fp-focus-ring);
+  --bs-pagination-active-color: var(--fp-on-primary);
+  --bs-pagination-active-bg: var(--fp-primary);
+  --bs-pagination-active-border-color: var(--fp-primary);
+  --bs-pagination-disabled-color: var(--fp-text-muted);
+  --bs-pagination-disabled-bg: var(--fp-surface-2);
+  --bs-pagination-disabled-border-color: var(--fp-border);
+}
+
+// Alerts and badges
+.alert-success {
+  color: var(--fp-success);
+  background-color: var(--fp-success-soft);
+  border-color: var(--fp-success-soft);
+}
+
+.alert-danger {
+  color: var(--fp-danger);
+  background-color: var(--fp-danger-soft);
+  border-color: var(--fp-danger-soft);
+}
+
+.alert-warning {
+  color: var(--fp-warning);
+  background-color: var(--fp-warning-soft);
+  border-color: var(--fp-warning-soft);
+}
+
+.alert-info {
+  color: var(--fp-info);
+  background-color: var(--fp-info-soft);
+  border-color: var(--fp-info-soft);
+}
+
+.badge {
+  border-radius: var(--fp-radius-sm);
+  font-family: var(--fp-font-body);
+  font-weight: 600;
+}
