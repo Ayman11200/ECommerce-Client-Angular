@@ -35,28 +35,28 @@
       <!-- Col 7 -->
       <div class="col-md-7">
         <div class="main-description px-2">
-          <div class="category text-bold">Category: {{ product()?.categoryName }}</div>
-          <div class="product-title text-bold my-3">{{ product()?.name }}</div>
+          <div class="category">Category: {{ product()?.categoryName }}</div>
+          <div class="product-title my-3">{{ product()?.name }}</div>
 
           <div class="price-area my-4">
             <p class="old-price mb-1">
               <del>{{ product()?.oldPrice | currency }}</del>
               @if (product(); as p) {
                 @if (p.oldPrice > 0 && p.newPrice > 0 && p.oldPrice > p.newPrice) {
-                  <span class="old-price-discount text-danger">
+                  <span class="old-price-discount">
                     ({{ getDiscount() | number: '1.0-0' }}% off)
                   </span>
                 }
               }
             </p>
-            <p class="new-price text-bold mb-1">{{ product()?.newPrice | currency }}</p>
-            <p class="text-danger">Quantity : {{ quantity }}</p>
+            <p class="new-price mb-1">{{ product()?.newPrice | currency }}</p>
+            <p class="quantity-label">Quantity : {{ quantity }}</p>
             <div>
-              <button (click)="decreaseQuantity()" class="btn btn-danger text-white">
+              <button (click)="decreaseQuantity()" class="btn btn-outline-secondary">
                 <i class="fa fa-minus"></i>
               </button>
               &nbsp;
-              <button (click)="increaseQuantity()" class="btn btn-dark text-white">
+              <button (click)="increaseQuantity()" class="btn btn-outline-secondary">
                 <i class="fa fa-plus"></i>
               </button>
             </div>
@@ -64,16 +64,16 @@
 
           <div class="buttons d-flex my-5">
             <div class="block pt-2">
-              <a href="#" class="shadow btn custom-btn"> <i class="fa fa-heart"></i> Wishlist</a>
+              <a href="#" class="btn btn-outline-secondary"> <i class="fa fa-heart"></i> Wishlist</a>
             </div>
             <div class="block pt-2">
-              <button (click)="onAddToCart()" class="shadow btn custom-btn">
+              <button (click)="onAddToCart()" class="btn btn-primary">
                 <i class="fa fa-shopping-cart"></i> Add to cart
               </button>
             </div>
 
             <div class="block pt-2">
-              <button routerLink="/shop" class="shadow btn custom-btn">
+              <button routerLink="/shop" class="btn btn-outline-secondary">
                 <i class="fa fa-shopping-bag"></i> Shopping
               </button>
             </div>
@@ -95,11 +95,11 @@
         </div>
 
         <div class="product-details my-4">
-          <p class="details-title text-color mb-1">Product Details</p>
+          <p class="details-title mb-1">Product Details</p>
           <p class="description">{{ product()?.description }}</p>
         </div>
 
-        <div class="row questions bg-light p-3">
+        <div class="row questions questions-panel p-3">
           <div class="col-md-1 icon">
             <i class="fa-brands fa-rocketchat questions-icon"></i>
           </div>
@@ -114,13 +114,13 @@
             <span><i class="fa-solid fa-truck"></i></span>
             <b>Delivery done in 3 days from date of purchase</b>
           </p>
-          <p class="text-secondary">Order now to get this product delivery</p>
+          <p class="delivery-note">Order now to get this product delivery</p>
         </div>
         <div class="delivery-options my-4">
           <p class="font-weight-bold mb-0">
             <span><i class="fa-solid fa-filter"></i></span> <b>Delivery options</b>
           </p>
-          <p class="text-secondary">View delivery options here</p>
+          <p class="delivery-note">View delivery options here</p>
         </div>
       </div>
     </div>

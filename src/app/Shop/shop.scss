@@ -1,34 +1,60 @@
-$primary-color: #7961ff;
-$secondary-color: #343a40;
-$background-color: #f8f9fa;
-$text-color: #212529;
-$border-radius: 0.5rem;
-$transition-duration: 0.3s;
-$danger-color: #dc3545;
-$star-color: #ffc107;
+.main-title {
+  margin-bottom: 1.5rem;
+  color: var(--fp-text);
+  font-family: var(--fp-font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.sidebar {
+  padding: 1.25rem;
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
+}
+
+.section-title {
+  margin-bottom: 0.75rem;
+  color: var(--fp-text);
+  font-family: var(--fp-font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
 
 .custom-list-group {
   .custom-list-item {
+    background-color: transparent;
+    color: var(--fp-text);
     cursor: pointer;
     transition:
-      background-color $transition-duration ease,
-      color $transition-duration ease;
+      background-color var(--fp-transition),
+      border-color var(--fp-transition),
+      color var(--fp-transition);
 
     @media (hover: hover) {
       &:hover {
-        background-color: rgba(255, 111, 97, 0.1);
+        background-color: var(--fp-primary-soft);
+        color: var(--fp-primary-text);
       }
     }
 
     &.active {
-      background-color: $primary-color;
-      border-color: $primary-color;
-      color: #fff;
+      background-color: var(--fp-primary);
+      border-color: var(--fp-primary);
+      color: var(--fp-on-primary);
     }
   }
 }
 
-//--------------------------
+.paging-text {
+  color: var(--fp-text-muted);
+  font-size: 0.9rem;
+}
+
 @media (max-width: 767px) {
   .sidebar {
     margin-bottom: 20px;

@@ -42,7 +42,7 @@
       <!-- Showing x of x -->
       <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
         <div class="paging-container">
-          <span class="text-dark">showing {{ products().length }} of {{ productParams.pageNumber * productParams.pageSize }}</span>
+          <span class="paging-text">showing {{ products().length }} of {{ productParams.pageNumber * productParams.pageSize }}</span>
         </div>
         <!-- Search -->
         <div class="search-container">
@@ -54,8 +54,8 @@
               class="form-control"
               placeholder="Search ..."
             />
-            <input (click)="onSearch()" type="button" class="btn btn-danger" value="Search" />
-            <input (click)="onReset()" type="button" class="btn btn-dark" value="Reset" />
+            <input (click)="onSearch()" type="button" class="btn btn-primary" value="Search" />
+            <input (click)="onReset()" type="button" class="btn btn-outline-secondary" value="Reset" />
           </div>
         </div>
       </div>
@@ -70,8 +70,7 @@
           [pageSize]="productParams.pageSize"
           [totalCount]="totalCount()"
           (pageChanged)="onPageChanged($event.page)"
-        ></app-pagination
-        >>
+        ></app-pagination>
       </div>
     </section>
   </div>
