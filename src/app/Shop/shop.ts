@@ -8,6 +8,7 @@ import { PaginationModule, PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { ProductParams } from '../Shared/Models/ProductParams';
 import { Pagination } from '../Shared/Models/Components/pagination/pagination';
 import { ToastrService } from '@relynn/ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   imports: [ShopItem, FormsModule, PaginationModule, Pagination],
@@ -19,8 +20,14 @@ export class Shop implements OnInit {
   constructor(
     private shopService: ShopService,
     private toastrService: ToastrService,
+    private activatedRoute: ActivatedRoute,
   ) {}
   ngOnInit(): void {
+    const categoryId = Number(this.activatedRoute.snapshot.queryParamMap.get('categoryId'));
+    if (categoryId) {
+      this.productParams.categoryId = categoryId;
+    }
+
     this.getAllProducts();
     this.getAllCategories();
   }

@@ -1,0 +1,198 @@
+.hero {
+  padding: 5rem 0;
+  background-color: var(--fp-dark-bg);
+  border-bottom: 1px solid var(--fp-dark-border);
+  color: var(--fp-on-dark);
+
+  @media (max-width: 767.98px) {
+    padding: 3rem 0;
+  }
+
+  .hero-eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--fp-primary);
+    font-family: var(--fp-font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    margin: 0 0 1rem;
+    color: var(--fp-on-dark);
+    font-family: var(--fp-font-heading);
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .hero-text {
+    max-width: 34rem;
+    margin: 0 0 1.75rem;
+    color: var(--fp-on-dark-muted);
+    font-size: 1.05rem;
+  }
+}
+
+.categories {
+  padding: 4rem 0;
+
+  @media (max-width: 767.98px) {
+    padding: 2.5rem 0;
+  }
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+
+  .section-title {
+    margin: 0 0 0.35rem;
+    color: var(--fp-text);
+    font-family: var(--fp-font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .section-text {
+    margin: 0;
+    color: var(--fp-text-muted);
+  }
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.5rem;
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
+  color: var(--fp-text);
+  text-decoration: none;
+  transition:
+    transform var(--fp-transition),
+    border-color var(--fp-transition),
+    box-shadow var(--fp-transition);
+
+  &:hover {
+    border-color: var(--fp-primary);
+    box-shadow: var(--fp-shadow);
+    transform: translateY(-4px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--fp-primary);
+    box-shadow: var(--fp-focus-ring);
+  }
+
+  .category-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--fp-primary-soft);
+    border-radius: var(--fp-radius);
+    color: var(--fp-primary-text);
+    font-size: 1.1rem;
+  }
+
+  .category-name {
+    margin: 0;
+    font-family: var(--fp-font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .category-text {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    color: var(--fp-text-muted);
+    font-size: 0.95rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .category-link {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    color: var(--fp-primary-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+.benefits {
+  padding: 0 0 4rem;
+
+  @media (max-width: 767.98px) {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.benefit {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  height: 100%;
+  padding: 1.25rem;
+  background-color: var(--fp-surface-2);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
+
+  .benefit-icon {
+    color: var(--fp-primary-text);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .benefit-title {
+    margin: 0 0 0.25rem;
+    font-family: var(--fp-font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .benefit-text {
+    margin: 0;
+    color: var(--fp-text-muted);
+    font-size: 0.95rem;
+  }
+}
+
+.closing-cta {
+  padding: 3.5rem 0;
+  background-color: var(--fp-dark-bg);
+  border-top: 1px solid var(--fp-dark-border);
+  color: var(--fp-on-dark);
+
+  .closing-title {
+    margin: 0 0 0.5rem;
+    color: var(--fp-on-dark);
+    font-family: var(--fp-font-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .closing-text {
+    max-width: 32rem;
+    margin: 0 0 1.5rem;
+    color: var(--fp-on-dark-muted);
+  }
+}

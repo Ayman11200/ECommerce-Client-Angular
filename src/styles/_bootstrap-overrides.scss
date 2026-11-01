@@ -60,6 +60,32 @@
   --bs-table-hover-bg: var(--fp-surface-2);
 }
 
+// Dark islands (navbar, home hero, closing CTA, footer).
+[data-bs-theme='dark'] {
+  color-scheme: dark;
+
+  --bs-body-bg: var(--fp-dark-bg);
+  --bs-body-color: var(--fp-on-dark);
+  --bs-emphasis-color: var(--fp-on-dark);
+  --bs-secondary-color: var(--fp-on-dark-muted);
+  --bs-secondary-bg: var(--fp-dark-surface);
+  --bs-tertiary-bg: var(--fp-dark-surface);
+
+  --bs-border-color: var(--fp-dark-border);
+  --bs-border-color-translucent: var(--fp-dark-border);
+
+  --bs-link-color: var(--fp-primary);
+  --bs-link-hover-color: var(--fp-primary-hover);
+
+  --bs-dropdown-bg: var(--fp-dark-surface);
+  --bs-dropdown-border-color: var(--fp-dark-border);
+  --bs-dropdown-link-color: var(--fp-on-dark);
+  --bs-dropdown-link-hover-color: var(--fp-primary);
+  --bs-dropdown-link-hover-bg: var(--fp-dark-border);
+  --bs-dropdown-link-active-color: var(--fp-on-dark);
+  --bs-dropdown-link-active-bg: var(--fp-primary);
+}
+
 // Buttons: Bootstrap keeps --bs-btn-* on each variant, so they must be set explicitly.
 .btn {
   --bs-btn-font-family: var(--fp-font-body);

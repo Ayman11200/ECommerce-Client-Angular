@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-xl navbar-dark">
+<nav class="navbar navbar-expand-xl" data-bs-theme="dark">
   <div class="container">
     <a routerLink="/home" class="navbar-brand" (click)="closeAll()">
-      <img src="./favicon.ico" class="logo" alt="logo" />
-      <i class="text-white">E-commerce</i>
+      <span class="brand-fit">FIT</span>
+      <span class="brand-plus">PLUS</span>
     </a>
 
     <button
@@ -46,11 +46,9 @@
       <form action="" class="search-form">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="search..." name="search" />
-          <div class="input-group-append">
-            <button class="btn btn-light" type="submit">
-              <i class="material-icons">search</i>
-            </button>
-          </div>
+          <button class="btn btn-primary" type="submit" aria-label="Search">
+            <i class="material-icons">search</i>
+          </button>
         </div>
       </form>
 
@@ -81,7 +79,7 @@
           </a>
           <div
             [class.show]="visible"
-            class="dropdown-menu dropdown-menu-right"
+            class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
             <a class="dropdown-item" routerLink="/register" (click)="closeAll()"

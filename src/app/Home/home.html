@@ -1,1 +1,78 @@
-<p>home works!</p>
+<section class="hero" data-bs-theme="dark">
+  <div class="container">
+    <p class="hero-eyebrow">Fit Plus</p>
+    <h1 class="hero-title">Train hard.<br />Look stronger.</h1>
+    <p class="hero-text">
+      Gear, supplements and everyday essentials picked for people who take training seriously.
+    </p>
+    <a routerLink="/shop" class="btn btn-primary btn-lg">Shop Now</a>
+  </div>
+</section>
+
+<section class="categories">
+  <div class="container">
+    <header class="section-heading">
+      <h2 class="section-title">Shop by category</h2>
+      <p class="section-text">Everything you need for the next session.</p>
+    </header>
+
+    @if (categories().length) {
+      <div class="row g-4">
+        @for (category of categories(); track category.id) {
+          <div class="col-sm-6 col-lg-4">
+            <a routerLink="/shop" [queryParams]="{ categoryId: category.id }" class="category-card">
+              <span class="category-icon"><i class="bi bi-grid-3x3-gap"></i></span>
+              <h3 class="category-name">{{ category.name }}</h3>
+              @if (category.description) {
+                <p class="category-text">{{ category.description }}</p>
+              }
+              <span class="category-link">Browse <i class="bi bi-arrow-right"></i></span>
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <article class="benefit">
+          <i class="bi bi-truck benefit-icon"></i>
+          <div>
+            <h3 class="benefit-title">Fast delivery</h3>
+            <p class="benefit-text">Orders leave the warehouse within 24 hours.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="benefit">
+          <i class="bi bi-shield-check benefit-icon"></i>
+          <div>
+            <h3 class="benefit-title">Secure payment</h3>
+            <p class="benefit-text">Card details are collected securely by Stripe.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="benefit">
+          <i class="bi bi-arrow-repeat benefit-icon"></i>
+          <div>
+            <h3 class="benefit-title">Easy returns</h3>
+            <p class="benefit-text">Changed your mind? Return within 14 days.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing-cta" data-bs-theme="dark">
+  <div class="container">
+    <h2 class="closing-title">Ready to level up?</h2>
+    <p class="closing-text">Build your kit and get it delivered to your door.</p>
+    <a routerLink="/shop" class="btn btn-primary btn-lg">Shop Now</a>
+  </div>
+</section>

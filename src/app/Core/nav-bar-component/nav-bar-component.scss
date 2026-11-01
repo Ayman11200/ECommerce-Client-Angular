@@ -1,39 +1,34 @@
-$primary-color: #3f51b5;
-$secondary-color: #5c6bc0;
-$accent-color: #ff4081;
-$light-color: #ffffff;
-$dark-color: #212121;
-$navbar-height: 60px;
-$navbar-padding: 1rem;
-$input-border-radius: 0.5rem;
-$transition-duration: 0.3s;
-
 .navbar {
-  background: linear-gradient(45deg, $primary-color, $secondary-color);
-  padding: 0.5rem $navbar-padding;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--fp-dark-bg);
+  border-bottom: 1px solid var(--fp-dark-border);
+  padding: 0.5rem 1rem;
 
   .navbar-brand {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.35rem;
     padding: 0;
+    font-family: var(--fp-font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
 
-    .logo {
-      height: 44px;
-      width: auto;
+    .brand-fit {
+      color: var(--fp-on-dark);
+    }
 
-      @media (min-width: 1200px) {
-        height: $navbar-height;
-      }
+    .brand-plus {
+      color: var(--fp-primary);
     }
   }
 
-  // زرار الهمبرجر
   .navbar-toggler {
-    color: $light-color;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 0.5rem;
+    color: var(--fp-on-dark);
+    background-color: transparent;
+    border: 1px solid var(--fp-dark-border);
+    border-radius: var(--fp-radius);
     padding: 0.25rem 0.4rem;
     line-height: 1;
 
@@ -42,56 +37,53 @@ $transition-duration: 0.3s;
       vertical-align: middle;
     }
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.3);
+      box-shadow: var(--fp-focus-ring);
     }
   }
 
   .navbar-nav {
-    .nav-item {
+    .nav-link {
+      color: var(--fp-on-dark-muted);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--fp-radius);
+      cursor: pointer;
       user-select: none;
+      transition:
+        color var(--fp-transition),
+        background-color var(--fp-transition);
 
-      .nav-link {
-        color: $light-color;
-        font-size: 1.1rem;
-        padding: 0.75rem 1rem;
-        cursor: pointer;
-        border-radius: 0.5rem;
-        transition:
-          color $transition-duration ease,
-          background-color $transition-duration ease;
+      &.active {
+        color: var(--fp-primary);
+        background-color: var(--fp-dark-surface);
+      }
 
-        &:focus {
-          outline: none;
-          color: $light-color;
-          background-color: transparent;
-        }
-        &.active {
-          color: $accent-color;
-          background-color: rgba(255, 255, 255, 0.1);
-        }
+      &:hover {
+        color: var(--fp-on-dark);
+        background-color: var(--fp-dark-surface);
+      }
 
-        &:hover,
-        &:focus-visible {
-          color: $accent-color;
-          background-color: rgba(255, 255, 255, 0.1);
-        }
+      &:focus-visible {
+        outline: none;
+        box-shadow: var(--fp-focus-ring);
       }
     }
   }
 
-  // على الشاشات الصغيرة: القايمة تاخد العرض وتبقى شكلها مرتب
   .navbar-collapse {
     @media (max-width: 1199.98px) {
       margin-top: 0.75rem;
       padding-bottom: 0.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 1px solid var(--fp-dark-border);
     }
   }
 }
 
-// فورم البحث
+// Search form
 .search-form {
   width: 100%;
   margin: 0.75rem 0;
@@ -106,62 +98,59 @@ $transition-duration: 0.3s;
   .input-group {
     width: 100%;
     flex-wrap: nowrap;
+  }
 
-    .form-control {
-      border-radius: $input-border-radius 0 0 $input-border-radius;
-      border: none;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      min-width: 0;
+  .form-control {
+    min-width: 0;
+    border: 1px solid var(--fp-border);
+    border-radius: var(--fp-radius) 0 0 var(--fp-radius);
+
+    &:focus {
+      border-color: var(--fp-primary);
+      box-shadow: var(--fp-focus-ring);
     }
+  }
 
-    .btn-light {
-      display: flex;
-      align-items: center;
-      border-radius: 0 $input-border-radius $input-border-radius 0;
-      border: none;
-      background-color: $accent-color;
-      color: $light-color;
-      transition: background-color $transition-duration ease;
-
-      &:hover {
-        background-color: darken($accent-color, 10%);
-      }
-    }
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    border-radius: 0 var(--fp-radius) var(--fp-radius) 0;
   }
 }
 
-// الدروب داون
-.dropdown-menu {
-  background-color: $dark-color !important;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+// Dropdown
+.navbar .dropdown-menu {
+  right: 0;
+  left: auto;
+  margin-top: 0.25rem;
+  background-color: var(--fp-dark-surface);
+  border: 1px solid var(--fp-dark-border);
+  border-radius: var(--fp-radius);
 
   .dropdown-item {
-    color: $light-color !important;
+    color: var(--fp-on-dark);
     padding: 0.5rem 1rem;
     cursor: pointer;
-    transition: background-color $transition-duration ease;
+    transition:
+      color var(--fp-transition),
+      background-color var(--fp-transition);
 
     i {
       color: inherit;
     }
 
-    // حل مشكلة الأبيض: بعد الضغط يرجع شكله الطبيعي
     &:focus,
     &:active,
     &.active {
-      background-color: transparent !important;
-      color: $light-color !important;
+      color: var(--fp-on-dark);
+      background-color: transparent;
       outline: none;
     }
 
-    // الهايلايت يظهر عند الـ hover أو التنقل بالكيبورد بس
     &:hover,
     &:focus-visible {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      color: $accent-color !important;
+      color: var(--fp-primary);
+      background-color: var(--fp-dark-border);
     }
   }
 }
-
-
