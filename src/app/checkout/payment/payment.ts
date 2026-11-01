@@ -1,9 +1,18 @@
-import { Component, ElementRef, ViewChild, inject, Input, signal, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  computed,
+  inject,
+  Input,
+  signal,
+  OnDestroy,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrService } from '@relynn/ngx-toastr';
-import { loadStripe, StripeElements, StripePaymentElement } from '@stripe/stripe-js';
+import { loadStripe, Stripe, StripeElements, StripePaymentElement } from '@stripe/stripe-js';
 
 import { CheckoutService } from '../checkout-service';
 import { BasketService } from '../../Basket/basket-service';
@@ -30,7 +39,18 @@ export class Payment implements OnDestroy {
   loading = signal(false);
   error = signal<string | null>(null);
 
+
+  complete = signal(false);
+  paying = signal(false);
+  paid = signal(false);
+
+  canPay = computed(
+    () => !this.loading() && !this.paying() && !this.error() && (this.complete() || this.paid()),
+  );
+
   private lastDeliveryMethodId: number | null = null;
+  private stripe: Stripe | null = null;
+  private elements: StripeElements | null = null;
   private paymentElement: StripePaymentElement | null = null;
 
   initializePayment(): void {
@@ -59,16 +79,58 @@ export class Payment implements OnDestroy {
     if (!clientSecret) return this.fail('Payment cannot be initialized. Missing client secret.');
 
     try {
-      const stripe = await loadStripe(environment.stripePublishableKey);
-      if (!stripe) return this.fail('Failed to load Stripe. Please check your connection.');
+      this.stripe = await loadStripe(environment.stripePublishableKey);
+      if (!this.stripe) return this.fail('Failed to load Stripe. Please check your connection.');
 
-      const elements: StripeElements = stripe.elements({ clientSecret });
-      this.paymentElement = elements.create('payment', { layout: 'tabs' });
+      // بنحتفظ بالـ elements عشان نستخدمها وقت الدفع
+      this.elements = this.stripe.elements({ clientSecret });
+
+      this.paymentElement = this.elements.create('payment', { layout: 'tabs' });
       this.paymentElement.mount(this.paymentDiv.nativeElement);
+
+      // كل ما العميل يكتب في الكارت ستريب يبلّغنا هل الفورم كمل ولا لأ
+      this.paymentElement.on('change', (event) => this.complete.set(event.complete));
+
       this.loading.set(false);
     } catch {
       this.fail('Unable to initialize payment form. Please try again.');
     }
+  }
+
+
+  async pay(): Promise<void> {
+    if (!this.stripe || !this.elements || this.paying()) return;
+
+    this.paying.set(true);
+
+    if (this.paid()) {
+      this.createOrder();
+      return;
+    }
+
+    const { error, paymentIntent } = await this.stripe.confirmPayment({
+      elements: this.elements, //الفورم اللي المستخدم دخل فيه بيانات الكارت
+
+      confirmParams: { return_url: `${window.location.origin}/success` },  //إعدادات تأكيد الدفع، ومنها رابط الرجوع بعد الـ Redirect.
+
+      redirect: 'if_required', // الكروت العادية ما بتعملش redirect
+    });
+
+    if (error) {
+      this.paying.set(false);
+      this.toastr.error(error.message ?? 'Payment failed.', 'PAYMENT FAILED');
+      return;
+    }
+
+    // if proccessing or other
+    if (paymentIntent?.status !== 'succeeded') {
+      this.paying.set(false);
+      this.toastr.info('Your payment is still being processed.', 'PROCESSING');
+      return;
+    }
+
+    this.paid.set(true);
+    this.createOrder();
   }
 
   private fail(message: string): void {
@@ -81,6 +143,7 @@ export class Payment implements OnDestroy {
   private destroyElement(): void {
     this.paymentElement?.destroy();
     this.paymentElement = null;
+    this.complete.set(false);
   }
 
   ngOnDestroy(): void {
@@ -88,19 +151,28 @@ export class Payment implements OnDestroy {
   }
 
   createOrder(): void {
-    this.checkoutService.createOrder(this.getOrder()).subscribe({
+    const order = this.getOrder();
+
+    this.checkoutService.createOrder(order).subscribe({
       next: (value) => {
+        this.basketService.deleteBasket(order.basketId);
         this.router.navigate(['/success'], { queryParams: { orderId: value.id } });
         this.toastr.success('Order created successfully', 'SUCCESS');
       },
-      error: () => this.toastr.error('Something went wrong', 'Error'),
+      error: () => {
+        this.paying.set(false);
+        this.toastr.error(
+          'Payment succeeded but creating the order failed. Press "Complete order" to retry. Do not pay again.',
+          'ERROR',
+        );
+      },
     });
   }
 
   getOrder(): ICreateOrder {
     return {
       basketId: this.basketService.basket()?.id!,
-      deliveryMethodId: this.delivery.value.id,
+      deliveryMethodId: Number(this.delivery.value.id),
       shippingAddressDto: this.address.value,
     };
   }

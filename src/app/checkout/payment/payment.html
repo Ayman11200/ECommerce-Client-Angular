@@ -18,11 +18,18 @@
     </div>
   }
 
-  <div #paymentElement class="stripe-payment-element">
-
-  </div>
+  <!-- Payment Element: ستريب بيرسم فورم الكارت هنا -->
+  <div #paymentElement class="stripe-payment-element"></div>
 
   <div class="payment-actions">
-    <button mat-button matStepperPrevious>Back</button>
+    <!-- Back: مقفول وقت الدفع، وبعد ما الدفع يتم -->
+    <button mat-button matStepperPrevious [disabled]="paying() || paid()">Back</button>
+
+    <!-- Pay Button: مقفول لحد ما الكارت يكتمل ولحد ما التحميل يخلص -->
+    <button mat-flat-button color="primary" class="ms-auto" (click)="pay()" [disabled]="!canPay()">
+      {{ paying() ? 'Processing...' : paid() ? 'Complete order' : 'Pay now' }}
+    </button>
+    
   </div>
+
 </div>
