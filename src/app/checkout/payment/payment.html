@@ -1,5 +1,28 @@
-<p>payment works!</p>
-<div>
-  <button matButton matStepperPrevious>Back</button>
-  <button matButton (click)="createOrder()" class="fa fa-fa-stripe">Payment</button>
+<div class="payment-section">
+  <div class="payment-header">
+    <h3 class="payment-title">Payment</h3>
+  </div>
+
+  @if (loading() || error()) {
+    <div class="payment-overlay">
+      @if (loading()) {
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Preparing secure payment…</p>
+      }
+      @if (error()) {
+        <div class="alert alert-danger">{{ error() }}</div>
+        <button mat-stroked-button color="primary" (click)="initializePayment()">Try again</button>
+      }
+    </div>
+  }
+
+  <div #paymentElement class="stripe-payment-element">
+
+  </div>
+
+  <div class="payment-actions">
+    <button mat-button matStepperPrevious>Back</button>
+  </div>
 </div>

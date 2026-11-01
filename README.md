@@ -1,8 +1,8 @@
 # E-Commerce Client (Angular)
 
-An Angular storefront that consumes a separate ASP.NET Core Web API. This repository contains the client application only: product browsing, basket management, checkout, order history, product ratings, and account flows such as registration, login, activation, and password reset.
+An Angular storefront that consumes a separate JSON Server API. This repository contains the client application only: product browsing, basket management, checkout, order history, product ratings, and account flows such as registration, login, activation, and password reset.
 
-The project is presented as a portfolio piece for a **Junior .NET Full-Stack Developer** role. It demonstrates standalone Angular components, lazy loading, functional HTTP interceptors, signal-based state, reactive forms, Angular Material, Bootstrap, and integration with a cookie-authenticated .NET backend.
+The project is presented as a portfolio piece for a **Junior .NET Full-Stack Developer** role. It demonstrates standalone Angular components, lazy loading, functional HTTP interceptors, signal-based state, reactive forms, Angular Material, Bootstrap, and integration with a cookie-authenticated backend API.
 
 > The backend API is not part of this repository. The client expects it to run at `https://localhost:7198`.
 
@@ -37,7 +37,7 @@ Screenshots are not committed to the repository yet. Add your own captures at th
 ## Tech stack
 
 | Layer | Technology | Version |
-| --- | --- | --- |
+|-------|------------|---------|
 | Framework | Angular | 22.2.x |
 | Language | TypeScript | ~6.0.2 |
 | Reactive programming | RxJS | ~7.8.0 |
@@ -48,7 +48,7 @@ Screenshots are not committed to the repository yet. Add your own captures at th
 | Loading indicator | ngx-spinner | 22.0.1 |
 | Notifications | `@relynn/ngx-toastr` | 22.0.0 |
 | Icons | Bootstrap Icons, Font Awesome, Material Icons | 1.13.2 / 4.7.0 / 1.13.14 |
-| IDs | `uuid` | 14.0.3 |
+| IDs | `uuid` | ^14.0.3 |
 | Unit tests | Vitest via `@angular/build:unit-test` | 5.0.0 |
 | Package manager | npm | 11.19.0 (declared in `package.json`) |
 
@@ -105,75 +105,6 @@ Screenshots are not committed to the repository yet. Add your own captures at th
 
 The application uses Angular standalone components (no `NgModules` at the feature level), functional route definitions, functional HTTP interceptors, and signal-based service state. `app.config.ts` registers the router, HTTP client with interceptors, and toast notifications. `app.ts` loads the basket on startup and hosts the navbar, router outlet, and global spinner.
 
-```text
-src/
-├── app/
-│   ├── Core/
-│   │   ├── Interceptors/
-│   │   │   ├── credential-interceptor.ts
-│   │   │   └── loader-interceptor.ts
-│   │   ├── Services/
-│   │   │   └── loading-service.ts
-│   │   └── nav-bar-component/
-│   ├── Shared/
-│   │   ├── Components/
-│   │   │   └── order-total/
-│   │   ├── Directives/
-│   │   │   └── image-zoom.ts
-│   │   └── Models/
-│   │       ├── Components/
-│   │       │   └── pagination/
-│   │       ├── IActiveAccount.ts
-│   │       ├── IBasket.ts
-│   │       ├── ICategory.ts
-│   │       ├── IDeliveryMethod.ts
-│   │       ├── IOrder.ts
-│   │       ├── IPagination.ts
-│   │       ├── IProduct.ts
-│   │       ├── IRating.ts
-│   │       ├── IResetPassword.ts
-│   │       └── ProductParams.ts
-│   ├── Shop/
-│   │   ├── product-details/
-│   │   ├── shop-item/
-│   │   ├── shop-service.ts
-│   │   └── shop.ts
-│   ├── Basket/
-│   │   ├── basket/
-│   │   └── basket-service.ts
-│   ├── checkout/
-│   │   ├── address/
-│   │   ├── delivery/
-│   │   ├── payment/
-│   │   ├── stepper/
-│   │   ├── success/
-│   │   ├── checkout-service.ts
-│   │   └── checkout.ts
-│   ├── Orders/
-│   │   ├── order/
-│   │   ├── order-item/
-│   │   └── order-srevice.ts
-│   ├── Identity/
-│   │   ├── active-account/
-│   │   ├── login/
-│   │   ├── register/
-│   │   ├── reset-password/
-│   │   └── identity-service.ts
-│   ├── Home/
-│   │   └── home.ts
-│   ├── app.config.ts
-│   ├── app.routes.ts
-│   ├── app.ts
-│   ├── app.html
-│   └── app.scss
-├── environments/
-│   ├── environment.ts
-│   └── environment.development.ts
-├── index.html
-├── main.ts
-└── styles.scss
-```
-
 ### Folder responsibilities
 
 - **Core** - application-wide concerns: the navbar, global loading service, and HTTP interceptors.
@@ -184,34 +115,6 @@ src/
 - **Orders** - order history, order details, rating submission, and the order API service.
 - **Identity** - registration, login, account activation, password reset, and the identity API service.
 - **Home** - a route placeholder for a future landing page.
-
-### Routing
-
-Routes are defined in `src/app/app.routes.ts`. The default path redirects to `shop`. The home route is eager; the remaining feature routes are lazy-loaded with `loadComponent`.
-
-| Path | Component | Loading |
-| --- | --- | --- |
-| `''` | Redirect to `/shop` | - |
-| `home` | `Home` | Eager |
-| `shop` | `Shop` | Lazy |
-| `basket` | `BasketComponent` | Lazy |
-| `register` | `Register` | Lazy |
-| `active` | `ActiveAccount` | Lazy |
-| `login` | `Login` | Lazy |
-| `reset-password` | `ResetPassword` | Lazy |
-| `checkout` | `Checkout` | Lazy |
-| `success` | `SuccessComponent` | Lazy |
-| `order` | `Order` | Lazy |
-| `orderItem/:id` | `OrderItem` | Lazy |
-| `product-details/:id` | `ProductDetails` | Lazy |
-
-There are no route guards and no active wildcard route; see [Known limitations and roadmap](#known-limitations-and-roadmap).
-
-### State management
-
-- `BasketService` exposes a readonly signal for the basket and computed values for subtotal, shipping, and total.
-- Feature components use local signals for loaded data and loading flags.
-- The basket ID is persisted in `localStorage`; authentication itself is cookie-based and does not store tokens in browser storage.
 
 ## API integration
 
@@ -270,8 +173,8 @@ The order API service file is named `order-srevice.ts` in the repository; the ta
 
 - **Node.js** - a version supported by Angular 22.
 - **npm** - 11.19.0 is declared as the package manager in `package.json`.
-- **.NET backend** - running locally at `https://localhost:7198`, exposing the API under `/api`.
-- **HTTPS trust** - the browser must trust the ASP.NET Core development certificate because the API uses HTTPS.
+- **JSON Server** - running locally at `https://localhost:7198`, exposing the API under `/api`.
+- **HTTPS trust** - the browser must trust the JSON Server certificate because the API uses HTTPS.
 - **CORS** - the backend must allow requests from `http://localhost:4200` and permit credentials.
 - Angular CLI is optional; the project scripts use the locally installed CLI.
 
@@ -290,7 +193,12 @@ The order API service file is named `order-srevice.ts` in the repository; the ta
    npm install
    ```
 
-3. Start the .NET API and confirm it is reachable at `https://localhost:7198/api`.
+3. Start the JSON Server API and confirm it is reachable at `https://localhost:7198/api`:
+
+   ```bash
+   cd server
+   json-server db.json --port 7198
+   ```
 
 4. Review the environment files if your backend runs elsewhere:
 
@@ -310,7 +218,7 @@ The order API service file is named `order-srevice.ts` in the repository; the ta
 ## Build and test commands
 
 | Command | Description |
-| --- | --- |
+|---------|-------------|
 | `npm start` | Start the Angular development server (`ng serve`) |
 | `npm run build` | Create a production build (`ng build`) |
 | `npm run watch` | Development build in watch mode |

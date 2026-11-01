@@ -1,7 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Basket, IBasket } from '../Shared/Models/IBasket';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { IProduct } from '../Shared/Models/IProduct';
 
@@ -94,6 +94,17 @@ export class BasketService {
       },
       error: (err) => console.log(err),
     });
+  }
+
+  createOrUpdatePayment(basketId: string, deliveryMethodId: number) {
+    const params = new HttpParams()
+      .set('basketId', basketId)
+      .set('deliveryMethodId', deliveryMethodId);
+    return this.httpClient.post<IBasket>(`${environment.baseUrl}/Payments`, null, { params }).pipe(
+      tap((value) => {
+        this.basketSignal.set(value);
+      }),
+    );
   }
 
   // # Private Methods

@@ -1,4 +1,4 @@
-<mat-stepper aria-label="Checkout steps" [linear]="false" #stepper>
+<mat-stepper aria-label="Checkout steps" [linear]="false" #stepper (selectionChange)="onStepChange($event)">
   <mat-step [stepControl]="address">
     <ng-template matStepLabel>Shipping Address</ng-template>
     <app-address [address]="address"></app-address>
@@ -8,8 +8,8 @@
     <app-delivery [delivery]="deliveryForm"></app-delivery>
   </mat-step>
 
-  <mat-step label="Payment-checkout">
-    <ng-template matStepLabel>Order Confirmation</ng-template>
+  <mat-step label="Payment">
+    <ng-template matStepLabel>Payment</ng-template>
     <app-payment [address]="address" [delivery]="deliveryForm"></app-payment>
   </mat-step>
 </mat-stepper>

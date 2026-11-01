@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, Service } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { IDeliveryMethod } from '../Shared/Models/IDeliveryMethod';
 import { ICreateOrder, IOrder } from '../Shared/Models/IOrder';
+import { IBasket } from '../Shared/Models/IBasket';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class CheckoutService {
   getDeliveryMethod() {
     return this.httpClient.get<IDeliveryMethod[]>(`${environment.baseUrl}/Order/Get-delivery`);
   }
+
 
   createOrder(order: ICreateOrder) {
     return this.httpClient.post<IOrder>(`${environment.baseUrl}/Order/Create-order`, order);

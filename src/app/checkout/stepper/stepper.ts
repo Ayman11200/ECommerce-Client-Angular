@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ViewChild, inject, signal } from '@angular/core';
 import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,4 +39,12 @@ export class StepperOverviewExample {
   deliveryForm = this.fb.group({
     id: ['', Validators.required],
   });
+
+  @ViewChild(Payment) private payment?: Payment;
+
+  onStepChange(event: any) {
+    if (event.selectedIndex === 2) {
+      this.payment?.initializePayment();
+    }
+  }
 }
