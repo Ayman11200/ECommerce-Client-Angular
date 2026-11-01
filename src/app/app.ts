@@ -8,9 +8,10 @@ import { IProduct } from './Shared/Models/IProduct';
 import { Shop } from './Shop/shop';
 import { NgxSpinnerComponent } from 'ngx-spinner';
 import { BasketService } from './Basket/basket-service';
+import { FooterComponent } from './Shared/Components/footer/footer';
 
 @Component({
-  imports: [NavBarComponent, RouterOutlet, NgxSpinnerComponent],
+  imports: [NavBarComponent, RouterOutlet, NgxSpinnerComponent, FooterComponent],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
