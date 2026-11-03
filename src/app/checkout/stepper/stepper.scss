@@ -1,5 +1,58 @@
-
-.mat-stepper-horizontal {
-  margin-top: 8px;
+:host {
+  display: block;
 }
 
+// Tokens are read by the Material stepper host itself, so they are set here
+// instead of relying on extra selectors. All values come from Fit Plus tokens.
+.mat-stepper-horizontal {
+  margin-top: 0.5rem;
+
+  --mat-stepper-container-color: transparent;
+  --mat-stepper-header-label-text-font: var(--fp-font-body);
+  --mat-stepper-header-label-text-size: 0.9375rem;
+  --mat-stepper-header-label-text-weight: 600;
+  --mat-stepper-header-label-text-color: var(--fp-text-muted);
+  --mat-stepper-header-selected-state-label-text-weight: 700;
+  --mat-stepper-header-selected-state-label-text-color: var(--fp-text);
+  --mat-stepper-header-icon-background-color: var(--fp-surface-2);
+  --mat-stepper-header-icon-foreground-color: var(--fp-text-muted);
+  --mat-stepper-header-selected-state-icon-background-color: var(--fp-primary);
+  --mat-stepper-header-selected-state-icon-foreground-color: var(--fp-on-primary);
+  --mat-stepper-header-done-state-icon-background-color: var(--fp-primary);
+  --mat-stepper-header-done-state-icon-foreground-color: var(--fp-on-primary);
+  --mat-stepper-line-color: var(--fp-border);
+  --mat-focus-indicator-border-color: var(--fp-primary);
+
+  // Material buttons default to a pill shape; the theme uses a light radius.
+  --mat-button-text-container-shape: var(--fp-radius);
+  --mat-button-outlined-container-shape: var(--fp-radius);
+  --mat-button-filled-container-shape: var(--fp-radius);
+  --mat-button-protected-container-shape: var(--fp-radius);
+}
+
+// The stepper ships a 24px content padding that eats the card width on mobile.
+:host ::ng-deep .mat-horizontal-content-container {
+  padding: 0 0 1rem;
+}
+
+// The checkout column is narrow, so Material squeezes every label into an
+// ellipsis. Let the labels wrap instead of hiding the step names.
+:host ::ng-deep .mat-step-label {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.25;
+}
+
+@media (max-width: 991.98px) {
+  :host ::ng-deep .mat-horizontal-stepper-header {
+    padding-inline: 12px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .mat-stepper-horizontal {
+    --mat-stepper-header-height: 56px;
+    --mat-stepper-header-label-text-size: 0.75rem;
+  }
+}

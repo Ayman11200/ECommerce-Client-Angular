@@ -1,11 +1,9 @@
 <div class="container mt-5">
-  <div>
-    <i class="fa fa-check-circle fa-5x" style="color: green"></i>
-  </div>
-  <div>
+  <div class="success-card">
+    <i class="fa fa-check-circle fa-5x status-icon status-icon--success"></i>
     <h2>Thank you, your order is Confirmed</h2>
     <p class="mb-4">Your order will shipping as soon as possible</p>
-    <button [routerLink]="['/orderItem', orderId]" class="btn btn-outline-success">
+    <button [routerLink]="['/orderItem', orderId]" class="btn btn-outline-secondary">
       View Order
     </button>
   </div>

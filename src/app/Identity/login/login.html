@@ -1,4 +1,4 @@
-<section class="login-section py-5">
+<section class="login-section">
   <div class="form-container">
     <div class="text-center mb-4">
       <div class="login-icon mb-3">
@@ -32,18 +32,18 @@
 
           @if (_email?.touched && _email?.valid) {
             <span class="input-group-text validation-icon">
-              <i class="bi bi-check-circle-fill text-success"></i>
+              <i class="bi bi-check-circle-fill validation-icon--success"></i>
             </span>
           }
 
           @if (_email?.invalid && _email?.touched) {
             <span class="input-group-text validation-icon">
-              <i class="bi bi-x-circle-fill text-danger"></i>
+              <i class="bi bi-x-circle-fill validation-icon--danger"></i>
             </span>
           }
         </div>
 
-        <div class="text-danger validation-message">
+        <div class="validation-message">
           @if (_email?.touched && _email?.errors?.['required']) {
             <span>Email is required.</span>
           }
@@ -76,23 +76,23 @@
 
           @if (_password?.touched && _password?.valid) {
             <span class="input-group-text validation-icon">
-              <i class="bi bi-check-circle-fill text-success"></i>
+              <i class="bi bi-check-circle-fill validation-icon--success"></i>
             </span>
           }
 
           @if (_password?.invalid && _password?.touched) {
             <span class="input-group-text validation-icon">
-              <i class="bi bi-x-circle-fill text-danger"></i>
+              <i class="bi bi-x-circle-fill validation-icon--danger"></i>
             </span>
           }
         </div>
 
-        <div class="text-danger validation-message">
+        <div class="validation-message">
           @if (_password?.touched && _password?.errors?.['required']) {
             <span>Password is required.</span>
           }
         </div>
-        <div class="text-danger validation-message">
+        <div class="validation-message">
           @if (_password?.touched && _password?.errors?.['pattern']) {
             <span>Password must contain at least one number, one special character (#$&#64;!.), and be
               at least 8 characters long.</span>
@@ -115,7 +115,7 @@
       <!-- Existing Login button -->
       <button
         type="submit"
-        class="btn btn-info login-btn w-100"
+        class="btn btn-primary login-btn w-100"
         [disabled]="loginForm.invalid"
       >
         <i class="bi bi-box-arrow-in-right me-2"></i>
@@ -189,7 +189,7 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-light"
+          class="btn btn-outline-secondary"
           data-bs-dismiss="modal"
         >
           Cancel
@@ -197,7 +197,7 @@
 
         <button
           type="button"
-          class="btn btn-info text-white"
+          class="btn btn-primary"
           (click)="sendPasswordResetEmail()"
           [disabled]="!emailModel.trim()"
         >

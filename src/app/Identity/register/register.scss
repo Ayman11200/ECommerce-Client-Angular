@@ -1,13 +1,42 @@
-.form-container{
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.register-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background-color: var(--fp-bg);
 }
-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
+  box-shadow: var(--fp-shadow);
+}
+
+.form-container h2 {
+  color: var(--fp-text);
+  font-family: var(--fp-font-heading);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.form-group {
+  margin-bottom: 0.25rem;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+  color: var(--fp-text);
+  font-weight: 600;
+}
+
+.validation-message {
+  min-height: 18px;
+  margin-bottom: 0.5rem;
+  color: var(--fp-danger);
+  font-size: 13px;
+}

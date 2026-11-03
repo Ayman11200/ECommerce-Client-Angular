@@ -1,9 +1,9 @@
 .payment-section {
+  position: relative;
   padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
 }
 
 .payment-header {
@@ -16,9 +16,12 @@
 
 .payment-title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #212529;
+  color: var(--fp-text);
+  font-family: var(--fp-font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .stripe-payment-element {
@@ -33,7 +36,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--fp-radius-lg);
+  background-color: color-mix(in srgb, var(--fp-surface) 95%, transparent);
   z-index: 2;
 }
 
@@ -43,7 +47,7 @@
 
 .payment-overlay p {
   margin: 0 0 1.5rem;
-  color: #6c757d;
+  color: var(--fp-text-muted);
 }
 
 .payment-actions {
@@ -53,11 +57,11 @@
   gap: 1rem;
   margin-top: 1.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--fp-border);
 }
 
 .payment-actions button {
-  border-radius: 8px;
+  border-radius: var(--fp-radius);
 }
 
 @media (max-width: 576px) {
