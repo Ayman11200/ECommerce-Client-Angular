@@ -27,10 +27,13 @@ export class ProductDetails implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.currentId = Number(params.get('id'));
+      this.similarProducts.set([]);
       this.shopService.getProductById(this.currentId).subscribe({
         next: (productRes) => {
           this.product.set(productRes);
           this.selectedImage.set(productRes.photos?.[0]?.imageName ?? '');
+          this.loadSimilarProducts(productRes);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         error: (err) => {
           console.log(err);
@@ -39,9 +42,21 @@ export class ProductDetails implements OnInit {
     });
   }
 
+  private loadSimilarProducts(product: IProduct) {
+    this.shopService.getSimilarProducts(product.categoryId, product.id).subscribe({
+      next: (products) => {
+        if (product.id === this.currentId) {
+          this.similarProducts.set(products);
+        }
+      },
+      error: () => this.similarProducts.set([]),
+    });
+  }
+
   currentId!: number;
   product = signal<IProduct | null>(null);
   selectedImage = signal<string>('');
+  similarProducts = signal<IProduct[]>([]);
   imagesBaseUrl = environment.imagesBaseUrl;
   quantity: number = 1;
 

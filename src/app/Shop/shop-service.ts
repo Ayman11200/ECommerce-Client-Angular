@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IPagination } from '../Shared/Models/IPagination';
 import { environment } from '../../environments/environment';
 import { ICategory } from '../Shared/Models/ICategory';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ProductParams } from '../Shared/Models/ProductParams';
 import { IProduct } from '../Shared/Models/IProduct';
 
@@ -38,5 +38,16 @@ export class ShopService {
 
   getProductById(id: number): Observable<IProduct> {
     return this.httpClient.get<IProduct>(`${environment.baseUrl}/Product/${id}`);
+  }
+
+  getSimilarProducts(categoryId: number, excludeId: number, count = 4): Observable<IProduct[]> {
+    const param = new HttpParams()
+      .append('categoryId', categoryId.toString())
+      .append('pageNumber', 1)
+      .append('pageSize', (count + 1).toString());
+
+    return this.httpClient
+      .get<IPagination>(`${environment.baseUrl}/Product`, { params: param })
+      .pipe(map((res) => res.data.filter((product) => product.id !== excludeId).slice(0, count)));
   }
 }
