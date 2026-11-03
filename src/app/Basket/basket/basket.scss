@@ -1,63 +1,225 @@
-
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.basket-container {
-  flex: 3;
-  margin-right: 20px;
-}
-
-.custom-table {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+@mixin clamp($lines) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
   overflow: hidden;
-  background-color: #fff;
-  width: 84%;
-  font-size: 1.1em;
-}
- thead {
-  background-color: #17a2b8;
-  color: #fff;
 }
 
-.custom-table th,
-.custom-table td {
-  padding: 20px;
-  vertical-align: middle;
+.basket-page {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
 }
 
-.custom-table tbody tr {
-  transition: background-color 0.3s, box-shadow 0.3s;
+.basket-card {
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
+  box-shadow: var(--fp-shadow);
+  overflow: hidden;
 }
 
-.custom-table tbody tr:hover {
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+// one grid template shared by the header and every row (desktop >= 992px)
+.basket-head,
+.basket-row {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr) 96px 124px 104px 40px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
 }
 
-
-.product-image {
-  width: 500px;
-  height: auto;
-  mix-blend-mode: multiply;
+.basket-head {
+  background-color: var(--fp-surface-2);
+  color: var(--fp-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--fp-border);
 }
 
-.description {
-  font-size: 12px;
+.basket-row {
+  grid-template-areas: 'thumb info price qty total remove';
+  border-bottom: 1px solid var(--fp-border);
+  transition: background-color var(--fp-transition);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background-color: var(--fp-surface-2);
+  }
 }
 
-.btn {
-  margin: 0 5px;
-  transition: transform 0.3s, background-color 0.3s;
+.thumb-link {
+  grid-area: thumb;
+  display: block;
+  line-height: 0;
 }
 
-.order-summary-container {
-  flex: 1;
-  position: fixed;
-  // top: 150px;
-  right: 20px;
-  width: 300px;
+.product-thumb {
+  width: 104px;
+  height: 104px;
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  background-color: var(--fp-image-stage);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
+.info {
+  grid-area: info;
+  min-width: 0;
+}
+
+.name {
+  @include clamp(2);
+  color: var(--fp-text);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--fp-primary-text);
+  }
+}
+
+.desc {
+  @include clamp(2);
+  margin: 0.25rem 0 0;
+  color: var(--fp-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.price,
+.total {
+  white-space: nowrap;
+}
+
+.price {
+  grid-area: price;
+}
+
+.total {
+  grid-area: total;
+  font-weight: 700;
+}
+
+.qty {
+  grid-area: qty;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius);
+  overflow: hidden;
+
+  span {
+    min-width: 2rem;
+    text-align: center;
+    font-weight: 600;
+  }
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background-color: var(--fp-surface-2);
+  color: var(--fp-text);
+  transition: background-color var(--fp-transition);
+
+  &:hover {
+    background-color: var(--fp-primary-soft);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--fp-focus-ring);
+  }
+}
+
+.remove {
+  grid-area: remove;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+}
+
+.basket-summary {
+  @media (min-width: 1200px) {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+.empty-basket {
+  padding: 4rem 1rem;
+  text-align: center;
+
+  i {
+    margin-bottom: 1rem;
+    color: var(--fp-text-muted);
+  }
+
+  h4 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: var(--fp-text-muted);
+  }
+}
+
+// tablet + mobile (< 992px): each row becomes a compact card
+@media (max-width: 991.98px) {
+  .basket-head {
+    display: none;
+  }
+
+  .basket-row {
+    grid-template-columns: 88px minmax(0, 1fr) auto;
+    grid-template-areas:
+      'thumb info remove'
+      'thumb price price'
+      'thumb qty total';
+    gap: 0.5rem 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .product-thumb {
+    width: 88px;
+    height: 88px;
+  }
+
+  .desc {
+    display: none;
+  }
+
+  .total,
+  .remove {
+    justify-self: end;
+  }
+
+  .remove {
+    align-self: start;
+  }
+}
+
+/*
+RULES: no table markup, no min-width on rows, no overflow-x scroll wrappers, do not add rules
+beyond the file above. Remove the old .custom-table / .c-* / .product-cell / .product-link /
+.product-name / .product-description / .empty-icon rules (they are all replaced).
+*/

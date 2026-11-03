@@ -1,9 +1,8 @@
 .address-section {
   padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
 }
 
 .address-header {
@@ -16,9 +15,12 @@
 
 .address-title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #212529;
+  color: var(--fp-text);
+  font-family: var(--fp-font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .address-grid {
@@ -38,11 +40,11 @@ mat-form-field {
   gap: 1rem;
   margin-top: 0.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--fp-border);
 }
 
 .address-actions button {
-  border-radius: 8px;
+  border-radius: var(--fp-radius);
 }
 
 .address-actions button:disabled {

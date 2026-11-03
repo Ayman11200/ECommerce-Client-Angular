@@ -55,5 +55,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./Shop/product-details/product-details').then((m) => m.ProductDetails),
   },
-  // { path: '**', redirectTo: 'shop', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

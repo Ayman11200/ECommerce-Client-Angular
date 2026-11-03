@@ -1,11 +1,8 @@
-
-
 .delivery-section {
   padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  background-color: var(--fp-surface);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius-lg);
 }
 
 .delivery-header {
@@ -18,9 +15,12 @@
 
 .delivery-title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #212529;
+  color: var(--fp-text);
+  font-family: var(--fp-font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .delivery-options {
@@ -32,8 +32,26 @@
 .delivery-option {
   display: block;
   padding: 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius);
+  transition:
+    border-color var(--fp-transition),
+    background-color var(--fp-transition);
+
+  &:hover {
+    border-color: var(--fp-primary);
+  }
+
+  &.mat-mdc-radio-checked {
+    border-color: var(--fp-primary);
+    background-color: var(--fp-primary-soft);
+  }
+}
+
+// Keep the projected label block so the description and details wrap in the card.
+:host ::ng-deep .delivery-option .mdc-label {
+  display: block;
+  flex: 1;
 }
 
 .delivery-name,
@@ -45,17 +63,17 @@
 .delivery-name {
   margin-bottom: 0.35rem;
   font-weight: 600;
-  color: #212529;
+  color: var(--fp-text);
 }
 
 .delivery-description {
   margin-bottom: 0.35rem;
-  color: #6c757d;
+  color: var(--fp-text-muted);
   font-size: 0.9rem;
 }
 
 .delivery-details {
-  color: #212529;
+  color: var(--fp-text);
   font-size: 0.9rem;
 }
 
@@ -66,11 +84,11 @@
   gap: 1rem;
   margin-top: 1.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--fp-border);
 }
 
 .delivery-actions button {
-  border-radius: 8px;
+  border-radius: var(--fp-radius);
 }
 
 @media (max-width: 576px) {
@@ -80,7 +98,5 @@
 
   .delivery-actions {
     gap: 0.75rem;
-    
   }
 }
-
