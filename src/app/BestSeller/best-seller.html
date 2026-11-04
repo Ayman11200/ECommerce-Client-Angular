@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <div class="mb-4">
+    <h1>Best sellers</h1>
+    <p class="bs-subtitle">The products our customers order the most.</p>
+  </div>
+
+  @if (loading()) {
+    <p class="bs-message">Loading best sellers...</p>
+  } @else if (error()) {
+    <div class="alert alert-danger d-flex flex-wrap align-items-center justify-content-between gap-2" role="alert">
+      <span>{{ error() }}</span>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="load()">Try again</button>
+    </div>
+  } @else if (products().length === 0) {
+    <div class="bs-empty">
+      <i class="bi bi-trophy"></i>
+      <h2>No best sellers yet</h2>
+      <p>Best sellers will appear here once customers start placing orders.</p>
+      <a routerLink="/shop" class="btn btn-primary">Browse the shop</a>
+    </div>
+  } @else {
+    <div class="row g-4">
+      @for (product of products(); track product.id) {
+        <app-shop-item [product]="product" class="col-xl-3 col-lg-4 col-md-6"></app-shop-item>
+      }
+    </div>
+  }
+</div>

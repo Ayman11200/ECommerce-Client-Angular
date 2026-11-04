@@ -40,6 +40,11 @@ export class ShopService {
     return this.httpClient.get<IProduct>(`${environment.baseUrl}/Product/${id}`);
   }
 
+  getBestSellers(take: number = 8): Observable<IProduct[]> {
+    const params = new HttpParams().set('take', take);
+    return this.httpClient.get<IProduct[]>(`${environment.baseUrl}/Product/best-sellers`, { params });
+  }
+
   getSimilarProducts(categoryId: number, excludeId: number, count = 4): Observable<IProduct[]> {
     const param = new HttpParams()
       .append('categoryId', categoryId.toString())

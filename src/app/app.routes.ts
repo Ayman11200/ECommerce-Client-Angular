@@ -59,5 +59,9 @@ export const routes: Routes = [
     path: 'about',
     loadComponent: () => import('./About/about').then((m) => m.About),
   },
-  { path: '**', redirectTo: 'shop', pathMatch: 'full' },
+  {
+    path: 'best-seller',
+    loadComponent: () => import('./BestSeller/best-seller').then((m) => m.BestSeller),
+  },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
