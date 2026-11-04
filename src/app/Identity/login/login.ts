@@ -9,6 +9,7 @@ import {
 import { IdentityService } from '../identity-service';
 import { ToastrService } from '@relynn/ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
+import 'bootstrap';
 
 @Component({
   imports: [ReactiveFormsModule, FormsModule, RouterLink],
