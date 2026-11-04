@@ -1,0 +1,83 @@
+<!-- Hero (dark island) -->
+<section class="about-hero" data-bs-theme="dark">
+  <div class="container">
+    <p class="about-eyebrow">About Fit Plus</p>
+    <h1 class="about-title">Built for people<br />who train.</h1>
+    <p class="about-lead">
+      Fit Plus is a supplements and gym essentials store made for people who take their training
+      seriously.
+    </p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="about-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <h2 class="about-heading">Our story</h2>
+      </div>
+      <div class="col-lg-7 about-text">
+        <p>
+          Fit Plus started with a simple idea: buying supplements should be clear, honest and easy.
+          No confusing labels and no endless scrolling, just the products you need to fuel your
+          training.
+        </p>
+        <p>
+          We pick every product with athletes in mind, from whey protein and creatine to vitamins
+          and daily essentials, and we keep the store simple so you spend less time shopping and
+          more time training.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="about-section about-section--alt">
+  <div class="container">
+    <h2 class="about-heading">Why Fit Plus</h2>
+    <div class="row g-4">
+      @for (item of values; track item.title) {
+        <div class="col-md-4">
+          <div class="about-card">
+            <span class="about-icon"><i [class]="'bi ' + item.icon"></i></span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Contact (static, no form) -->
+<section class="about-section">
+  <div class="container">
+    <h2 class="about-heading">Get in touch</h2>
+    <div class="row g-4">
+      @for (item of contacts; track item.label) {
+        <div class="col-sm-6 col-lg-3">
+          <div class="about-card">
+            <span class="about-icon"><i [class]="'bi ' + item.icon"></i></span>
+            <p class="about-label">{{ item.label }}</p>
+            @if (item.href) {
+              <a [href]="item.href">{{ item.value }}</a>
+            } @else {
+              <span class="about-value">{{ item.value }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Closing CTA (dark island) -->
+<section class="about-cta" data-bs-theme="dark">
+  <div class="container">
+    <h2>Ready to start?</h2>
+    <p>Browse the shop and find your next favorite product.</p>
+    <a routerLink="/shop" class="btn btn-primary btn-lg">Shop Now</a>
+  </div>
+</section>
