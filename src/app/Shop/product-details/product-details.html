@@ -1,8 +1,8 @@
 @if (product(); as p) {
-  <div class="container my-5">
-    <div class="row g-5">
+  <div class="container product-page">
+    <div class="row g-4 g-lg-5">
       <div class="col-lg-6">
-        <div class="gallery-card card p-3">
+        <div class="gallery-card card p-2 p-lg-3">
           @if (p.photos?.length) {
             <div class="zoom-box">
               <img
@@ -12,7 +12,7 @@
                 alt="Product image"
               />
             </div>
-            <div class="previews d-flex flex-wrap gap-2 mt-3">
+            <div class="previews" role="group" aria-label="Product images">
               @for (photo of p.photos; track $index) {
                 <button
                   type="button"
@@ -34,9 +34,9 @@
       <div class="col-lg-6">
         <div class="info-column">
           <span class="category-chip">{{ p.categoryName }}</span>
-          <h1 class="product-title my-3">{{ p.name }}</h1>
+          <h1 class="product-title">{{ p.name }}</h1>
 
-          <div class="price-block d-flex flex-wrap align-items-baseline gap-3 mb-4">
+          <div class="price-block">
             <span class="new-price">{{ p.newPrice | currency }}</span>
             @if (p.oldPrice > 0 && p.oldPrice > p.newPrice) {
               <span class="old-price">{{ p.oldPrice | currency }}</span>
@@ -45,96 +45,107 @@
           </div>
 
           <div class="description-block">
-            <p class="section-label mb-1">Product Details</p>
-            <p class="description mb-0">{{ p.description }}</p>
+            <p class="section-label">Product Details</p>
+            <p class="description">{{ p.description }}</p>
           </div>
-
-          <hr class="section-divider my-4" />
 
           <div class="purchase-area">
-            <span class="quantity-label d-block mb-2">Quantity</span>
-            <div class="quantity-stepper">
-              <button
-                type="button"
-                class="stepper-btn"
-                aria-label="Decrease quantity"
-                (click)="decreaseQuantity()"
-              >
-                <i class="fa fa-minus" aria-hidden="true"></i>
-              </button>
-              <input
-                class="quantity-input"
-                type="number"
-                min="1"
-                max="10"
-                aria-label="Quantity"
-                [(ngModel)]="quantity"
-              />
-              <button
-                type="button"
-                class="stepper-btn"
-                aria-label="Increase quantity"
-                (click)="increaseQuantity()"
-              >
-                <i class="fa fa-plus" aria-hidden="true"></i>
-              </button>
-            </div>
-
-            <div class="mt-3">
-              <button
-                (click)="onAddToCart()"
-                class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center gap-2 w-100"
-              >
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                Add to cart
-              </button>
-              <div class="secondary-actions mt-3">
-                <button type="button" class="btn btn-outline-secondary">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  Wishlist
+            <div class="quantity-row">
+              <span class="quantity-label">Quantity</span>
+              <div class="quantity-stepper">
+                <button
+                  type="button"
+                  class="stepper-btn"
+                  aria-label="Decrease quantity"
+                  (click)="decreaseQuantity()"
+                >
+                  <i class="fa fa-minus" aria-hidden="true"></i>
                 </button>
-                <button routerLink="/shop" class="btn btn-outline-secondary">
-                  <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                  Shopping
+                <input
+                  class="quantity-input"
+                  type="number"
+                  min="1"
+                  max="10"
+                  aria-label="Quantity"
+                  [(ngModel)]="quantity"
+                />
+                <button
+                  type="button"
+                  class="stepper-btn"
+                  aria-label="Increase quantity"
+                  (click)="increaseQuantity()"
+                >
+                  <i class="fa fa-plus" aria-hidden="true"></i>
                 </button>
               </div>
+            </div>
+
+            <button
+              (click)="onAddToCart()"
+              class="btn btn-primary add-to-cart"
+              type="button"
+            >
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              Add to cart
+            </button>
+
+            <div class="secondary-actions">
+              <button
+                type="button"
+                class="btn btn-outline-secondary icon-action"
+                aria-label="Add to wishlist"
+                title="Wishlist"
+              >
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </button>
+              <a
+                routerLink="/shop"
+                class="btn btn-outline-secondary icon-action"
+                aria-label="Continue shopping"
+                title="Shopping"
+              >
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
 
-          <div class="info-box card p-3 mt-4">
-            <div class="info-row d-flex align-items-start gap-3">
-              <span class="info-icon"><i class="fa fa-truck" aria-hidden="true"></i></span>
-              <div>
-                <p class="info-title mb-0 fw-semibold">
-                  Delivery done in 3 days from date of purchase
-                </p>
-                <p class="info-subtitle small mb-0">Order now to get this product delivery</p>
-              </div>
-            </div>
-            <div class="info-row d-flex align-items-start gap-3 mt-3">
-              <span class="info-icon"><i class="fa fa-sliders" aria-hidden="true"></i></span>
-              <div>
-                <p class="info-title mb-0 fw-semibold">Delivery options</p>
-                <p class="info-subtitle small mb-0">View delivery options here</p>
-              </div>
-            </div>
-            <div class="info-row d-flex align-items-start gap-3 mt-3">
-              <span class="info-icon"><i class="fa fa-comments" aria-hidden="true"></i></span>
-              <div>
-                <p class="info-title mb-0 fw-semibold">Questions?</p>
-                <p class="info-subtitle small mb-0">
-                  Have a question about our products at Fit Plus? Contact our representatives via
-                  live chat or email.
-                </p>
-              </div>
-            </div>
+          <div class="info-accordion">
+            <details class="info-item">
+              <summary>
+                <span class="info-icon"><i class="fa fa-truck" aria-hidden="true"></i></span>
+                <span class="info-title">Delivery done in 3 days from date of purchase</span>
+                <i class="fa fa-chevron-down info-chevron" aria-hidden="true"></i>
+              </summary>
+              <p class="info-subtitle">Order now to get this product delivery</p>
+            </details>
+
+            <details class="info-item">
+              <summary>
+                <span class="info-icon"><i class="fa fa-sliders" aria-hidden="true"></i></span>
+                <span class="info-title">Delivery options</span>
+                <i class="fa fa-chevron-down info-chevron" aria-hidden="true"></i>
+              </summary>
+              <p class="info-subtitle">View delivery options here</p>
+            </details>
+
+            <details class="info-item">
+              <summary>
+                <span class="info-icon"><i class="fa fa-comments" aria-hidden="true"></i></span>
+                <span class="info-title">Questions?</span>
+                <i class="fa fa-chevron-down info-chevron" aria-hidden="true"></i>
+              </summary>
+              <p class="info-subtitle">
+                Have a question about our products at Fit Plus? Contact our representatives via live
+                chat or email.
+              </p>
+            </details>
           </div>
         </div>
       </div>
     </div>
 
     @if (similarProducts().length > 0) {
-      <section class="similar-products mt-5">
+      <section class="similar-products mt-4 mt-lg-5">
         <h2 class="similar-title mb-3">Similar Products</h2>
         <div class="row g-3 g-lg-4">
           @for (item of similarProducts(); track item.id) {

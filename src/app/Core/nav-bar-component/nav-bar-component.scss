@@ -102,8 +102,14 @@
 
   .form-control {
     min-width: 0;
-    border: 1px solid var(--fp-border);
+    background-color: var(--fp-dark-bg);
+    border: 1px solid var(--fp-dark-border);
     border-radius: var(--fp-radius) 0 0 var(--fp-radius);
+    color: var(--fp-on-dark);
+
+    &::placeholder {
+      color: var(--fp-on-dark-muted);
+    }
 
     &:focus {
       border-color: var(--fp-primary);

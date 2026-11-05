@@ -26,7 +26,7 @@ export class ShopService {
       param = param.append('search', productParams.search);
     }
     param = param.append('pageNumber', productParams.pageNumber);
-    param = param.append('pageSize', 2);
+    param = param.append('pageSize', 3);
 
     return this.httpClient.get<IPagination>(`${environment.baseUrl}/Product`, { params: param });
   }
@@ -42,7 +42,9 @@ export class ShopService {
 
   getBestSellers(take: number = 8): Observable<IProduct[]> {
     const params = new HttpParams().set('take', take);
-    return this.httpClient.get<IProduct[]>(`${environment.baseUrl}/Product/best-sellers`, { params });
+    return this.httpClient.get<IProduct[]>(`${environment.baseUrl}/Product/best-sellers`, {
+      params,
+    });
   }
 
   getSimilarProducts(categoryId: number, excludeId: number, count = 4): Observable<IProduct[]> {
